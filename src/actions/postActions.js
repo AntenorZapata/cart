@@ -1,19 +1,26 @@
-import { FETCH_POSTS, NEW_POST } from './types';
+import {
+  FETCH_CATEGORIES,
+  FETCH_PRODUCTS,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  ADJUST_QTY,
+  LOAD_CURRENT_ITEM,
+} from './types';
 
-export function fetchPosts() {
+export function fetchCategories() {
   return function (dispatch) {
     fetch('https://api.mercadolibre.com/sites/MLB/categories')
       .then((response) => response.json())
       .then((data) =>
         dispatch({
-          type: FETCH_POSTS,
+          type: FETCH_CATEGORIES,
           payload: data,
         })
       );
   };
 }
 
-export function addProduct(categoryID, query) {
+export function fetchProducts(categoryID, query) {
   return function (dispatch) {
     fetch(
       `https://api.mercadolibre.com/sites/MLB/search?category=${categoryID}&q=${query}`
@@ -21,9 +28,46 @@ export function addProduct(categoryID, query) {
       .then((response) => response.json())
       .then((data) =>
         dispatch({
-          type: NEW_POST,
+          type: FETCH_PRODUCTS,
           payload: data.results,
         })
       );
+  };
+}
+
+export function addToCart(itemID) {
+  return {
+    type: ADD_TO_CART,
+    payload: {
+      id: itemID,
+    },
+  };
+}
+
+export function removeFromCart(itemID) {
+  return {
+    type: REMOVE_FROM_CART,
+    payload: {
+      id: itemID,
+    },
+  };
+}
+
+export function adjustQty(itemID, value) {
+  return {
+    type: ADJUST_QTY,
+    payload: {
+      id: itemID,
+      qty: value,
+    },
+  };
+}
+
+export function loadCurrItem(item) {
+  return {
+    type: LOAD_CURRENT_ITEM,
+    payload: {
+      item,
+    },
   };
 }

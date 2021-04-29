@@ -2,5 +2,5 @@ import { combineReducers } from 'redux';
 import postReducer from './postReducers';
 
 export default combineReducers({
-  product: postReducer,
+  shop: postReducer,
 });

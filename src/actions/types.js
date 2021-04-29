@@ -1,2 +1,6 @@
-export const FETCH_POSTS = 'FETCH_POSTS';
-export const NEW_POST = 'NEW_POST';
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+export const FETCH_PRODUCTS = 'NEW_POST';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const ADJUST_QTY = 'ADJUST QTY';
+export const LOAD_CURRENT_ITEM = 'LOAD_CURRENT_ITEM';
