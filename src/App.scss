@@ -1,38 +1,54 @@
+@import 'variables.scss';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar {
+  border: 1px solid black;
+  height: 4rem;
+  width: 65%;
+  margin: auto;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+ul {
+  list-style: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.product-container {
+  background-color: rgb(216, 168, 168);
+  height: 100vh;
+  display: flex;
+  width: 65%;
+  margin: 4rem auto;
+
+  .section-products {
+    width: 80%;
+    background-color: rgb(211, 211, 154);
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0 auto;
+  justify-content: space-around;
+}
+
+.card {
+  border: 1px solid rgb(111, 144, 160);
+  display: grid;
+  grid-template-columns: 22vh;
+  margin: 10px;
+  text-align: center;
+  height: 15rem;
 }

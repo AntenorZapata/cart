@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { fetchCategories, fetchProducts } from '../actions/postActions';
 import Categories from '../components/Categories';
 import Header from '../components/Header';
+import Card from '../components/Card';
 
 class Products extends Component {
   componentDidMount() {
     // this.props.fetchCategories();
-    this.props.fetchProducts();
+    this.props.fetchProducts('', 'informática');
   }
 
   render() {
@@ -15,8 +16,20 @@ class Products extends Component {
     return (
       <div>
         <Header />
-        <Categories />
-        <h1>produtos</h1>
+        <section className='content'>
+          <section className='product-container'>
+            <div className='section-products'>
+              <div className='card-container'>
+                {this.props.products.map((item) => {
+                  return <Card key={item.id} product={item} />;
+                })}
+              </div>
+            </div>
+            <aside className='categories-aside'>
+              <Categories />
+            </aside>
+          </section>
+        </section>
       </div>
     );
   }
