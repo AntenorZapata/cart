@@ -19,6 +19,7 @@ class Card extends Component {
     return (
       <div className="card">
         <h3>{product.title.split(0, 2)}</h3>
+        {/* <img src={product.thumbnail} alt="" /> */}
         <div className="btn">
           <button
             onClick={() => this.handleAddProduct(product.id)}

@@ -3,7 +3,8 @@ import {
   FETCH_PRODUCTS,
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  ADJUST_QTY,
+  ADJUST_QTY_SUM,
+  ADJUST_QTY_SUBTRACT,
   LOAD_CURRENT_ITEM,
 } from '../actions/types';
 
@@ -12,6 +13,7 @@ const initialState = {
   products: [],
   item: null,
   cart: [],
+  count: 1,
 };
 
 export default function reducer(state = initialState, action) {
@@ -49,21 +51,50 @@ export default function reducer(state = initialState, action) {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload.id),
       };
-    case ADJUST_QTY:
+
+    case ADJUST_QTY_SUM:
       return {
         ...state,
         cart: state.cart.map((item) =>
           item.id === action.payload.id
-            ? { ...item, qty: action.payload.qty }
+            ? { ...item, qty: item.qty + action.payload.qty }
             : item
         ),
       };
+
+    case ADJUST_QTY_SUBTRACT:
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, qty: item.qty - action.payload.qty }
+            : item
+        ),
+      };
+
     case LOAD_CURRENT_ITEM:
       return {
         ...state,
         item: action.payload,
       };
+
     default:
       return state;
   }
 }
+
+// export function counter(state = initialState, action) {
+//   switch (action.type) {
+//     case ADJUST_QTY:
+//       return {
+//         ...state,
+//         cart: state.cart.map((item) =>
+//           item.id === action.payload.id
+//             ? { ...item, qty: item.qty + action.payload.qty }
+//             : item
+//         ),
+//       };
+//     default:
+//       return state;
+//   }
+// }

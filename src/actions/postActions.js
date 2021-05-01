@@ -3,8 +3,9 @@ import {
   FETCH_PRODUCTS,
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  ADJUST_QTY,
+  ADJUST_QTY_SUM,
   LOAD_CURRENT_ITEM,
+  ADJUST_QTY_SUBTRACT
 } from './types';
 
 export function fetchCategories() {
@@ -53,9 +54,19 @@ export function removeFromCart(itemID) {
   };
 }
 
-export function adjustQty(itemID, value) {
+export function adjustQtySum(itemID, value) {
   return {
-    type: ADJUST_QTY,
+    type: ADJUST_QTY_SUM,
+    payload: {
+      id: itemID,
+      qty: value,
+    },
+  };
+}
+
+export function adjustQtySubtract(itemID, value) {
+  return {
+    type: ADJUST_QTY_SUBTRACT,
     payload: {
       id: itemID,
       qty: value,

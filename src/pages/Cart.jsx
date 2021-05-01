@@ -29,30 +29,33 @@ class Cart extends Component {
     return (
       <div>
         <Header />
-        <h1>cart</h1>
-        <div className="cart-container">
-          <div className="cart-products">
-            <div className="title">
-              <h4>Produto</h4>
-              <h4>Preço</h4>
-              <h4>Quantidade</h4>
-              <h4>Frete</h4>
-              <h4>Excluir do Carrinho</h4>
-            </div>
-
-            {this.props.cart.map((prod) => (
-              <div key={prod.id} className="cart-products-container">
-                <ShoppingCart product={prod} />
+        {!this.props.cart.length ? (
+          <div className='empty-cart'>Seu carrinho está vazio</div>
+        ) : (
+          <div className="cart-container">
+            <div className="cart-products">
+              <div className="title">
+                <h4>Produto</h4>
+                <h4>Preço</h4>
+                <h4>Quantidade</h4>
+                <h4>Frete</h4>
+                <h4>Excluir do Carrinho</h4>
               </div>
-            ))}
-            <div className="total-container">
-              <div className="total">
-                <h1>TOTAL DO PEDIDO</h1>
-                <p>{this.props.cart.length ? this.handleTotal() : 0}</p>
+
+              {this.props.cart.map((prod) => (
+                <div key={prod.id} className="cart-products-container">
+                  <ShoppingCart product={prod} />
+                </div>
+              ))}
+              <div className="total-container">
+                <div className="total">
+                  <h1>TOTAL DO PEDIDO</h1>
+                  <p>{this.props.cart.length ? this.handleTotal() : 0}</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }
@@ -62,10 +65,10 @@ const mapStateToProps = (state) => ({
   cart: state.shop.cart,
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    adjustQty: (id, value) => dispatch(adjustQty(id, value)),
-    removeFromCart: (id) => dispatch(removeFromCart(id)),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     adjustQty: (id, value) => dispatch(adjustQty(id, value)),
+//     removeFromCart: (id) => dispatch(removeFromCart(id)),
+//   };
+// };
+export default connect(mapStateToProps, null)(Cart);

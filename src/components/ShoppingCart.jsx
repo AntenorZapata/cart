@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
+import {
+  adjustQtySum,
+  removeFromCart,
+  adjustQtySubtract,
+} from '../actions/postActions';
+import { connect } from 'react-redux';
 
-export default class ShoppingCart extends Component {
+class ShoppingCart extends Component {
+  handleQuantitySum(prod) {
+    this.props.adjustQtySum(prod.id, 1);
+  }
+
+  handleQuantitySubtract(prod) {
+    if (prod.qty > 0) {
+      this.props.adjustQtySubtract(prod.id, 1);
+    }
+  }
+
   render() {
     const { product } = this.props;
     console.log(product);
+
     return (
       <div>
         <div className="prod">
@@ -19,9 +36,11 @@ export default class ShoppingCart extends Component {
             <p>{product.price}</p>
           </div>
           <div className="btns-qty">
-            <button>-</button>
+            <button onClick={() => this.handleQuantitySubtract(product)}>
+              -
+            </button>
             <p>{product.qty}</p>
-            <button>+</button>
+            <button onClick={() => this.handleQuantitySum(product)}>+</button>
           </div>
           <div className="subtotal">
             <p>
@@ -31,13 +50,31 @@ export default class ShoppingCart extends Component {
             </p>
           </div>
           <div className="remove">
-            <p>remove</p>
+            <p
+              className="remove-btn"
+              onClick={() => this.props.removeFromCart(product.id)}
+            >
+              remove
+            </p>
           </div>
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  cart: state.shop.cart,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    adjustQtySum: (id, value) => dispatch(adjustQtySum(id, value)),
+    adjustQtySubtract: (id, value) => dispatch(adjustQtySubtract(id, value)),
+    removeFromCart: (id) => dispatch(removeFromCart(id)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);
 
 // shipping:
 // free_shipping: true
