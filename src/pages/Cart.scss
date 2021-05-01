@@ -1,0 +1,102 @@
+.cart-products {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: green;
+  align-items: center;
+
+  align-items: center;
+  .title {
+    background-color: red;
+    width: 100%;
+    height: 2%;
+    margin-top: 7rem;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .cart-products-container {
+    background-color: blue;
+    width: 100%;
+    height: 10rem;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+
+  .total-container {
+    background-color: rgb(204, 174, 174);
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    height: 20%;
+
+    .total {
+      border: 1px solid black;
+      background-color: palegreen;
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      justify-content: center;
+      height: 100%;
+
+      p {
+        margin-top: 2rem;
+      }
+    }
+  }
+}
+
+.prod {
+  display: flex;
+  width: 100%;
+  background-color: gray;
+  height: 100%;
+  align-items: center;
+
+  .img-name {
+    width: 20%;
+
+    .image {
+      img {
+        width: 5rem;
+        height: 5em;
+        // margin-left: -1.5rem;
+      }
+    }
+  }
+
+  .price {
+    p {
+      margin-left: -5rem;
+    }
+    width: 20%;
+  }
+
+  .btns-qty {
+    margin-left: -2.5rem;
+
+    width: 20%;
+    display: flex;
+
+    justify-content: center;
+
+    button {
+      width: 3rem;
+    }
+  }
+
+  .subtotal {
+    p {
+      margin-left: -1.5rem;
+    }
+    width: 20%;
+  }
+
+  .remove {
+    p {
+      margin-left: -2.5rem;
+    }
+    width: 20%;
+  }
+}

@@ -1,0 +1,16 @@
+.categories-aside {
+  background-color: red;
+  width: 20%;
+
+  .categories {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    margin-top: 0.5rem;
+
+    li {
+      margin: 1.5rem;
+      cursor: pointer;
+    }
+  }
+}

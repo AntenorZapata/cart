@@ -6,7 +6,9 @@ export default class About extends Component {
     return (
       <div>
         <Header />
-        <h1>Player audio</h1>
+        <div className="about-container">
+          <h1>Player audio</h1>
+        </div>
       </div>
     );
   }
