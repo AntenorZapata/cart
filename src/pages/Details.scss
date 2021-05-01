@@ -1,0 +1,26 @@
+.details {
+  background-color: rgb(216, 168, 168);
+  display: flex;
+  width: 65%;
+  margin: 4rem auto;
+  min-height: 100vh;
+
+  .details-content {
+    width: 100%;
+    display: flex;
+
+    .left-content {
+      width: 50%;
+      background-color: rgb(150, 82, 93);
+
+      img {
+        width: 30rem;
+        height: 35rem;
+      }
+    }
+
+    .right-content {
+      width: 50%;
+    }
+  }
+}

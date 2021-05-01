@@ -8,11 +8,13 @@ import { connect } from 'react-redux';
 
 class ShoppingCart extends Component {
   handleQuantitySum(prod) {
-    this.props.adjustQtySum(prod.id, 1);
+    if (prod.qty < prod.available_quantity) {
+      this.props.adjustQtySum(prod.id, 1);
+    }
   }
 
   handleQuantitySubtract(prod) {
-    if (prod.qty > 0) {
+    if (prod.qty > 1) {
       this.props.adjustQtySubtract(prod.id, 1);
     }
   }
@@ -33,10 +35,18 @@ class ShoppingCart extends Component {
             </div>
           </div>
           <div className="price">
-            <p>{product.price}</p>
+            <p>
+              {product.price.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              })}
+            </p>
           </div>
           <div className="btns-qty">
-            <button onClick={() => this.handleQuantitySubtract(product)}>
+            <button
+              disabled={product.qty === 1 ? true : false}
+              onClick={() => this.handleQuantitySubtract(product)}
+            >
               -
             </button>
             <p>{product.qty}</p>
@@ -46,7 +56,7 @@ class ShoppingCart extends Component {
             <p>
               {product.shipping.free_shipping
                 ? 'Grátis!'
-                : `R$: ${Math.round(Math.random() * 20)},90`}
+                : `R$: ${(9.9 * product.qty).toFixed(2)}`}
             </p>
           </div>
           <div className="remove">

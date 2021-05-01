@@ -11,7 +11,7 @@ import {
 const initialState = {
   categories: [],
   products: [],
-  item: null,
+  currItem: null,
   cart: [],
   count: 1,
 };
@@ -75,7 +75,7 @@ export default function reducer(state = initialState, action) {
     case LOAD_CURRENT_ITEM:
       return {
         ...state,
-        item: action.payload,
+        currItem: action.payload,
       };
 
     default:

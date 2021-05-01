@@ -3,11 +3,13 @@ import Header from '../components/Header';
 import { connect } from 'react-redux';
 import { adjustQty, removeFromCart } from '../actions/postActions';
 import ShoppingCart from '../components/ShoppingCart';
+import { Link } from 'react-router-dom';
 
 class Cart extends Component {
   constructor(props) {
     super(props);
     this.handleTotal = this.handleTotal.bind(this);
+    this.handleShipping = this.handleShipping.bind(this);
   }
 
   handleTotal() {
@@ -18,11 +20,20 @@ class Cart extends Component {
         return total + item.price * item.qty;
       }, 0);
 
-      return total.toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-      });
+      return total;
     }
+  }
+
+  handleShipping() {
+    const { cart } = this.props;
+
+    const shippingCart = cart.filter((i) => i.shipping.free_shipping === false);
+
+    const shipping = shippingCart.reduce((total, item) => {
+      total += item.qty * 9.9;
+      return total;
+    }, 0);
+    return shipping;
   }
 
   render() {
@@ -30,7 +41,7 @@ class Cart extends Component {
       <div>
         <Header />
         {!this.props.cart.length ? (
-          <div className='empty-cart'>Seu carrinho está vazio</div>
+          <div className="empty-cart">Seu carrinho está vazio</div>
         ) : (
           <div className="cart-container">
             <div className="cart-products">
@@ -47,10 +58,34 @@ class Cart extends Component {
                   <ShoppingCart product={prod} />
                 </div>
               ))}
+              <Link to="/products">Continuar Comprando</Link>
               <div className="total-container">
                 <div className="total">
-                  <h1>TOTAL DO PEDIDO</h1>
-                  <p>{this.props.cart.length ? this.handleTotal() : 0}</p>
+                  <h4>Subtotal</h4>
+                  <p>
+                    {this.props.cart.length
+                      ? this.handleTotal().toLocaleString('pt-BR', {
+                          style: 'currency',
+                          currency: 'BRL',
+                        })
+                      : null}
+                  </p>
+                  <h4>Frete</h4>
+                  <p>
+                    +
+                    {this.handleShipping().toLocaleString('pt-BR', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })}
+                  </p>
+                  <h4>Total do pedido</h4>
+                  {(this.handleTotal() + this.handleShipping()).toLocaleString(
+                    'pt-BR',
+                    {
+                      style: 'currency',
+                      currency: 'BRL',
+                    }
+                  )}
                 </div>
               </div>
             </div>

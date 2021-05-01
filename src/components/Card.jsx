@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { addToCart } from '../actions/postActions';
+import { addToCart, loadCurrItem } from '../actions/postActions';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Card extends Component {
   constructor(props) {
@@ -28,6 +29,14 @@ class Card extends Component {
             +
           </button>
         </div>
+        <div className="btn-details">
+          <button
+            type="button"
+            onClick={() => this.props.loadCurrItem(product)}
+          >
+            <Link to="/details">Detalhes</Link>
+          </button>
+        </div>
       </div>
     );
   }
@@ -40,6 +49,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (id) => dispatch(addToCart(id)),
+    loadCurrItem: (item) => dispatch(loadCurrItem(item)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

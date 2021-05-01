@@ -5,7 +5,7 @@ import {
   REMOVE_FROM_CART,
   ADJUST_QTY_SUM,
   LOAD_CURRENT_ITEM,
-  ADJUST_QTY_SUBTRACT
+  ADJUST_QTY_SUBTRACT,
 } from './types';
 
 export function fetchCategories() {
