@@ -5,23 +5,29 @@ import {
   adjustQtySubtract,
 } from '../actions/postActions';
 import { connect } from 'react-redux';
+import BtnsQuantity from './BtnsQuantity';
 
 class ShoppingCart extends Component {
-  handleQuantitySum(prod) {
-    if (prod.qty < prod.available_quantity) {
-      this.props.adjustQtySum(prod.id, 1);
-    }
+  constructor(props) {
+    super(props);
+    // this.handleQuantitySum = this.handleQuantitySum.bind(this);
+    // this.handleQuantitySubtract = this.handleQuantitySubtract.bind(this);
   }
 
-  handleQuantitySubtract(prod) {
-    if (prod.qty > 1) {
-      this.props.adjustQtySubtract(prod.id, 1);
-    }
-  }
+  // handleQuantitySum(prod) {
+  //   if (prod.qty < prod.available_quantity) {
+  //     this.props.adjustQtySum(prod.id, 1);
+  //   }
+  // }
+
+  // handleQuantitySubtract(prod) {
+  //   if (prod.qty > 1) {
+  //     this.props.adjustQtySubtract(prod.id, 1);
+  //   }
+  // }
 
   render() {
     const { product } = this.props;
-    console.log(product);
 
     return (
       <div>
@@ -42,7 +48,12 @@ class ShoppingCart extends Component {
               })}
             </p>
           </div>
-          <div className="btns-qty">
+          <BtnsQuantity
+            handleQuantitySum={this.handleQuantitySum}
+            handleQuantitySubtract={this.handleQuantitySubtract}
+            product={product}
+          />
+          {/* <div className="btns-qty">
             <button
               disabled={product.qty === 1 ? true : false}
               onClick={() => this.handleQuantitySubtract(product)}
@@ -51,7 +62,7 @@ class ShoppingCart extends Component {
             </button>
             <p>{product.qty}</p>
             <button onClick={() => this.handleQuantitySum(product)}>+</button>
-          </div>
+          </div> */}
           <div className="subtotal">
             <p>
               {product.shipping.free_shipping

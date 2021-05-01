@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import { addToCart } from '../actions/postActions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import BtnsQuantity from '../components/BtnsQuantity';
 
 class Details extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class Details extends Component {
     this.state = {
       show: false,
       item: {},
+      showCart: false,
     };
   }
 
@@ -21,9 +23,20 @@ class Details extends Component {
     }
   }
 
+  handleAddToCart(id) {
+    this.props.addToCart(id);
+
+    this.setState({ showCart: true });
+  }
+
+  handleItemCart(id) {
+    const item = this.props.cart.find((item) => item.id === id);
+    return item;
+  }
+
   render() {
-    const { show, item } = this.state;
-    console.log(item);
+    const { show, item, showCart, load } = this.state;
+    console.log(load);
 
     return (
       <div>
@@ -43,7 +56,10 @@ class Details extends Component {
                   <h3>{item.title.split(0, 2)}</h3>
                 </div>
                 <div className="item-details">
-                  <h4>{item.condition}</h4>
+                  <h4>
+                    Condição:
+                    {item.condition === 'new' ? ' Novo' : 'usado'}
+                  </h4>
                   <div className="details-price">
                     <h4>
                       {item.price.toLocaleString('pt-BR', {
@@ -59,10 +75,18 @@ class Details extends Component {
                 <div className="btn-details-add">
                   <button
                     type="button"
-                    onClick={() => this.props.addToCart(item.id)}
+                    onClick={() => this.handleAddToCart(item.id)}
                   >
                     Adicionar
                   </button>
+                  {showCart ? (
+                    <div>
+                      <div className="btns-details-cart">
+                        <BtnsQuantity product={this.handleItemCart(item.id)} />
+                      </div>
+                      <Link to="/cart">ver carrinho</Link>
+                    </div>
+                  ) : null}
                 </div>
               </div>
               <Link to="/products">Voltar</Link>
@@ -76,6 +100,7 @@ class Details extends Component {
 
 const mapStateToProps = (state) => ({
   currItem: state.shop.currItem,
+  cart: state.shop.cart,
 });
 
 const mapDispatchToProps = (dispatch) => {
