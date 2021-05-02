@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { AiFillStar } from 'react-icons/ai';
-import PropTypes from 'prop-types';
 
 class StarRatings extends Component {
   render() {
-    const { handleRating, rating, bool } = this.props;
+    const { bool, rating, handleRating } = this.props;
     const num = 5;
-    console.log(bool);
+
     return (
       <div className="star-rating">
         {[...Array(num)].map((star, index) => {
@@ -32,11 +31,5 @@ class StarRatings extends Component {
     );
   }
 }
-
-StarRatings.propTypes = {
-  handleRating: PropTypes.func.isRequired,
-  rating: PropTypes.number.isRequired,
-  bool: PropTypes.string.isRequired,
-};
 
 export default StarRatings;

@@ -6,6 +6,8 @@ import {
   ADJUST_QTY_SUM,
   LOAD_CURRENT_ITEM,
   ADJUST_QTY_SUBTRACT,
+  ADD_REVIEW,
+  LOAD_REVIEW,
 } from './types';
 
 export function fetchCategories() {
@@ -79,6 +81,27 @@ export function loadCurrItem(item) {
     type: LOAD_CURRENT_ITEM,
     payload: {
       item,
+    },
+  };
+}
+
+export function addReview(id, email, msg, rating) {
+  return {
+    type: ADD_REVIEW,
+    payload: {
+      id,
+      email,
+      msg,
+      rating,
+    },
+  };
+}
+
+export function loadReview(id) {
+  return {
+    type: LOAD_REVIEW,
+    payload: {
+      id,
     },
   };
 }

@@ -1,31 +1,46 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
-import { addToCart } from '../actions/postActions';
+import { addToCart, addReview, loadReview } from '../actions/postActions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import BtnsQuantity from '../components/BtnsQuantity';
+import StarRating from '../components/StarRatings';
+import FormRating from '../components/FormRating';
+import { isObject } from 'lodash';
 
 class Details extends Component {
   constructor(props) {
     super(props);
+    this.handleRating = this.handleRating.bind(this);
+    this.handleValue = this.handleValue.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
       show: false,
       item: {},
       showCart: false,
+      reload: true,
+      rating: 0,
+      email: '',
+      avaliation: '',
     };
   }
 
   componentDidMount() {
     if (this.props.currItem) {
       this.setState({ show: true });
-      this.setState({ item: this.props.currItem.item });
+      this.setState({ item: this.props.currItem });
     }
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const { item, email, avaliation, rating } = this.state;
+    this.props.addReview(item.id, email, avaliation, rating);
   }
 
   handleAddToCart(id) {
     this.props.addToCart(id);
-
     this.setState({ showCart: true });
   }
 
@@ -34,9 +49,49 @@ class Details extends Component {
     return item;
   }
 
+  handleRating(value) {
+    this.setState({ rating: value });
+  }
+
+  handleValue(e) {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  }
+
+  handleLoadReview(item) {}
+
+  handleShowDivReviews(rating, id) {
+    return (
+      <div>
+        {rating
+          .filter((elem) => elem.id === id)
+          .map((i, index) => (
+            <StarRating key={index} />
+          ))}
+      </div>
+    );
+  }
+
+  handleShowRating() {
+    const { rating } = this.state;
+    return (
+      <div>
+        <StarRating
+          bool={true}
+          handleRating={this.handleRating}
+          rating={rating}
+        />
+        <FormRating
+          handleValue={this.handleValue}
+          handleSubmit={this.handleSubmit}
+        />
+      </div>
+    );
+  }
+
   render() {
-    const { show, item, showCart, load } = this.state;
-    console.log(load);
+    const { show, item, showCart } = this.state;
+    const { rating } = this.props;
 
     return (
       <div>
@@ -79,6 +134,10 @@ class Details extends Component {
                   >
                     Adicionar
                   </button>
+                  {this.handleShowRating()}
+                  {rating.length
+                    ? this.handleShowDivReviews(rating, item.id)
+                    : null}
                   {showCart ? (
                     <div>
                       <div className="btns-details-cart">
@@ -101,11 +160,15 @@ class Details extends Component {
 const mapStateToProps = (state) => ({
   currItem: state.shop.currItem,
   cart: state.shop.cart,
+  rating: state.shop.rating,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (id) => dispatch(addToCart(id)),
+    loadReview: (id) => dispatch(loadReview(id)),
+    addReview: (id, email, msg, rating) =>
+      dispatch(addReview(id, email, msg, rating)),
   };
 };
 

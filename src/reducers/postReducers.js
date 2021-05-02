@@ -6,6 +6,8 @@ import {
   ADJUST_QTY_SUM,
   ADJUST_QTY_SUBTRACT,
   LOAD_CURRENT_ITEM,
+  ADD_REVIEW,
+  LOAD_REVIEW,
 } from '../actions/types';
 
 const initialState = {
@@ -14,6 +16,7 @@ const initialState = {
   currItem: null,
   cart: [],
   count: 1,
+  rating: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -75,7 +78,28 @@ export default function reducer(state = initialState, action) {
     case LOAD_CURRENT_ITEM:
       return {
         ...state,
-        currItem: action.payload,
+        currItem: action.payload.item,
+      };
+
+    case ADD_REVIEW:
+      return {
+        ...state,
+        rating: [
+          ...state.rating,
+          {
+            id: action.payload.id,
+            email: action.payload.email,
+            msg: action.payload.msg,
+            rating: action.payload.rating,
+          },
+        ],
+      };
+
+    case LOAD_REVIEW:
+      const reviews = state.rating.map((item) => item.id === action.payload.id);
+      return {
+        ...state,
+        rating: [...state.rating],
       };
 
     default:

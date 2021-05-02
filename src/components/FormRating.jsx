@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 class FormRating extends Component {
   render() {
-    const { Submit, Value } = this.props;
+    const { handleSubmit, handleValue } = this.props;
     return (
       <div>
         <form className="form">
@@ -12,15 +11,15 @@ class FormRating extends Component {
             required
             placeholder="Email"
             name="email"
-            onChange={(e) => Value(e)}
+            onChange={(e) => handleValue(e)}
           />
           <textarea
-            onChange={(e) => Value(e)}
+            onChange={(e) => handleValue(e)}
             name="avaliation"
             data-testid="product-detail-evaluation"
             placeholder="Sua opinião sobre o produto"
           />
-          <button type="submit" onClick={Submit}>
+          <button type="submit" onClick={handleSubmit}>
             Avaliar
           </button>
         </form>
@@ -28,10 +27,5 @@ class FormRating extends Component {
     );
   }
 }
-
-FormRating.propTypes = {
-  Submit: PropTypes.func.isRequired,
-  Value: PropTypes.func.isRequired,
-};
 
 export default FormRating;
