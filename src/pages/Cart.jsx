@@ -59,7 +59,6 @@ class Cart extends Component {
                 </div>
               ))}
               <Link to="/products">Continuar Comprando</Link>
-              <Link to="/checkout">Finalizar Compra</Link>
               <div className="total-container">
                 <div className="total">
                   <h4>Subtotal</h4>
@@ -88,6 +87,9 @@ class Cart extends Component {
                     }
                   )}
                 </div>
+              </div>
+              <div className="proceed-checkout">
+                <Link to="/checkout">Finalizar Compra</Link>
               </div>
             </div>
           </div>

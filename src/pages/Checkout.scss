@@ -4,4 +4,27 @@
   width: 65%;
   margin: 4rem auto;
   min-height: 100vh;
+
+  .billings {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(164, 164, 224);
+    text-align: left;
+
+    form {
+      .first-last {
+        display: flex;
+
+        .first-name {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .last-name {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
 }

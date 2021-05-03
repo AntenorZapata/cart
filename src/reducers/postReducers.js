@@ -96,7 +96,8 @@ export default function reducer(state = initialState, action) {
       };
 
     case LOAD_REVIEW:
-      const reviews = state.rating.map((item) => item.id === action.payload.id);
+      // const reviews = state.rating.map((item) => item.id === action.payload.id);
+      // no need
       return {
         ...state,
         rating: [...state.rating],

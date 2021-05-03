@@ -97,6 +97,7 @@ export function addReview(id, email, msg, rating) {
   };
 }
 
+// no need
 export function loadReview(id) {
   return {
     type: LOAD_REVIEW,
