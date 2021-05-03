@@ -5,11 +5,15 @@
   margin: 4rem auto;
   min-height: 100vh;
 
-  .billings {
+  .checkout-left-content {
+    background-color: rgb(218, 218, 182);
+    width: 50%;
+
     display: flex;
     flex-direction: column;
     background-color: rgb(164, 164, 224);
     text-align: left;
+    width: 50%;
 
     form {
       .first-last {
@@ -25,6 +29,27 @@
           flex-direction: column;
         }
       }
+      .adress {
+        display: flex;
+
+        .endreco {
+          display: flex;
+          flex-direction: column;
+        }
+        .number-cep {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
+      .newsletter {
+        display: flex;
+        flex-direction: column;
+      }
     }
+  }
+  .checkout-right-content {
+    width: 50%;
+    background-color: rgb(50, 71, 50);
   }
 }
