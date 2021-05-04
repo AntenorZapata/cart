@@ -3,12 +3,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .time-control {
   width: 50%;
   display: flex;
+  margin-top: -18rem;
 
   input {
     width: 100%;
@@ -23,13 +24,19 @@
 
 .play-control {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 1rem;
   width: 30%;
+  margin-top: -22rem;
+
+  .play {
+    color: rgb(36, 28, 28);
+    cursor: pointer;
+  }
 
   svg {
-    cursor: pointer;
+    color: rgb(204, 204, 204);
   }
 }
 
@@ -62,4 +69,9 @@ input[type='range']::-webkit-slider-thumb {
   left: 0;
   transform: translateX(0%);
   pointer-events: none;
+}
+
+.skip-forward,
+.skip-back {
+  color: rgb(212, 204, 204);
 }

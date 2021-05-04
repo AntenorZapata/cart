@@ -1,5 +1,9 @@
 .audio-player-container {
-  width: 100%;
+  width: 80%;
+  margin: auto;
+  margin-top: -5rem;
+  justify-content: center;
+
   .song-container {
     min-height: 60vh;
     display: flex;
@@ -18,6 +22,21 @@
       height: 10%;
       border-radius: 100%;
       color: white;
+      object-fit: cover;
+    }
+
+    .rotate {
+      animation: rotate 3s linear infinite;
+      animation-play-state: running;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     h2 {

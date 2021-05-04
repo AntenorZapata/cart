@@ -21,9 +21,9 @@ class Header extends Component {
             <Link to="/cart">Cart</Link>
           </div>
           <p>{cart.length}</p>
-          <div className="login">
+          {/* <div className="login">
             <Link to="/login">Login</Link>
-          </div>
+          </div> */}
         </div>
       </section>
     );

@@ -42,7 +42,7 @@ export default class About extends Component {
         <Header />
         <div className="about-container">
           <div className="audio-player-container">
-            <Song currSong={currSong} />
+            <Song isPlaying={isPlaying} currSong={currSong} />
             <Player
               handleSetIsPlaying={this.handleSetIsPlaying}
               isPlaying={isPlaying}

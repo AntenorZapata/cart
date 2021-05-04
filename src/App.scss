@@ -4,6 +4,7 @@
 @import './pages/Cart.scss';
 @import './pages/Details.scss';
 @import './pages/Checkout.scss';
+@import './pages/About.scss';
 @import './components/StarRating.scss';
 @import './components/Player/Player.scss';
 @import './components/Player/Song.scss';
@@ -89,7 +90,7 @@ ul {
 .cart-container,
 .about-container,
 .empty-cart {
-  background-color: rgb(216, 168, 168);
+  // background-color: rgb(216, 168, 168);
   // display: flex;
   width: 65%;
   margin: 4rem auto;
