@@ -37,6 +37,7 @@ class Cart extends Component {
   }
 
   render() {
+    const { cart } = this.props;
     return (
       <div>
         <Header />
@@ -89,7 +90,14 @@ class Cart extends Component {
                 </div>
               </div>
               <div className="proceed-checkout">
-                <Link to="/checkout">Finalizar Compra</Link>
+                <Link
+                  to={{
+                    pathname: '/checkout',
+                    state: { cart },
+                  }}
+                >
+                  Finalizar Compra
+                </Link>
               </div>
             </div>
           </div>

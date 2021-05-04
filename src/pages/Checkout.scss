@@ -1,55 +1,78 @@
 .checkout-container {
-  background-color: rgb(216, 168, 168);
-  display: flex;
+  background-color: rgb(204, 32, 32);
+
   width: 65%;
   margin: 4rem auto;
   min-height: 100vh;
 
   .checkout-left-content {
-    background-color: rgb(218, 218, 182);
     width: 50%;
-
     display: flex;
     flex-direction: column;
     background-color: rgb(164, 164, 224);
     text-align: left;
+  }
+
+  .checkout-right-content {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(120, 120, 204);
+    text-align: left;
+  }
 
-    form {
-      .first-last {
+  form {
+    display: flex;
+    width: 100%;
+
+    .first-last {
+      display: flex;
+
+      .first-name {
         display: flex;
-
-        .first-name {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .last-name {
-          display: flex;
-          flex-direction: column;
-        }
-      }
-      .adress {
-        display: flex;
-
-        .endreco {
-          display: flex;
-          flex-direction: column;
-        }
-        .number-cep {
-          display: flex;
-          flex-direction: column;
-        }
+        flex-direction: column;
       }
 
-      .newsletter {
+      .last-name {
         display: flex;
         flex-direction: column;
       }
     }
+    .adress {
+      display: flex;
+
+      .endreco {
+        display: flex;
+        flex-direction: column;
+      }
+      .number-cep {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .newsletter {
+      display: flex;
+      flex-direction: column;
+    }
   }
-  .checkout-right-content {
-    width: 50%;
-    background-color: rgb(50, 71, 50);
+}
+
+.order {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+}
+
+.payment-content {
+  .credit-cart {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .first-last-order {
+    display: flex;
   }
 }
