@@ -38,6 +38,13 @@ class Cart extends Component {
 
   render() {
     const { cart } = this.props;
+    const total = (this.handleTotal() + this.handleShipping()).toLocaleString(
+      'pt-BR',
+      {
+        style: 'currency',
+        currency: 'BRL',
+      }
+    );
     return (
       <div>
         <Header />
@@ -80,20 +87,14 @@ class Cart extends Component {
                     })}
                   </p>
                   <h4>Total do pedido</h4>
-                  {(this.handleTotal() + this.handleShipping()).toLocaleString(
-                    'pt-BR',
-                    {
-                      style: 'currency',
-                      currency: 'BRL',
-                    }
-                  )}
+                  {total}
                 </div>
               </div>
               <div className="proceed-checkout">
                 <Link
                   to={{
                     pathname: '/checkout',
-                    state: { cart },
+                    state: { cart, total },
                   }}
                 >
                   Finalizar Compra

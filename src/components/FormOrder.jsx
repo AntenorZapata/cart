@@ -17,7 +17,7 @@ export default class FormOrder extends Component {
 
   render() {
     const { show } = this.state;
-    const { cart } = this.props;
+    const { cart, state } = this.props;
     const link = cart[0].permalink;
 
     return (
@@ -37,26 +37,51 @@ export default class FormOrder extends Component {
             <div>
               <div className="credit-cart">
                 <label htmlFor="card">Cartão de crédito</label>
-                <input required type="text" id="card" />
+                <input
+                  required
+                  type="text"
+                  id="card"
+                  defaultValue={state.credCard}
+                />
               </div>
               <div className="first-last-order">
                 <div className="first-name">
                   <label htmlFor="first-name">Nome</label>
-                  <input required type="text" id="first-name" />
+                  <input
+                    required
+                    type="text"
+                    id="first-name"
+                    defaultValue={state.name}
+                  />
                 </div>
                 <div className="last-name">
                   <label htmlFor="last-name">Sobrenome</label>
-                  <input required type="text" id="last-name" />
+                  <input
+                    required
+                    type="text"
+                    id="last-name"
+                    defaultValue={state.lastName}
+                  />
                 </div>
               </div>
               <div className="first-last-order">
                 <div className="date">
                   <label htmlFor="date">Vencimento</label>
-                  <input required type="date" id="date" />
+                  <input
+                    required
+                    type="date"
+                    id="date"
+                    defaultValue={state.date}
+                  />
                 </div>
                 <div className="security">
                   <label htmlFor="security">Cc</label>
-                  <input required type="text" id="security" />
+                  <input
+                    required
+                    type="text"
+                    id="security"
+                    defaultValue={state.cc}
+                  />
                 </div>
               </div>
             </div>

@@ -27,7 +27,7 @@ class ShoppingCart extends Component {
   // }
 
   render() {
-    const { product } = this.props;
+    const { product, bool } = this.props;
 
     return (
       <div>
@@ -48,11 +48,13 @@ class ShoppingCart extends Component {
               })}
             </p>
           </div>
-          <BtnsQuantity
-            handleQuantitySum={this.handleQuantitySum}
-            handleQuantitySubtract={this.handleQuantitySubtract}
-            product={product}
-          />
+          {bool ? null : (
+            <BtnsQuantity
+              handleQuantitySum={this.handleQuantitySum}
+              handleQuantitySubtract={this.handleQuantitySubtract}
+              product={product}
+            />
+          )}
           {/* <div className="btns-qty">
             <button
               disabled={product.qty === 1 ? true : false}
@@ -63,21 +65,25 @@ class ShoppingCart extends Component {
             <p>{product.qty}</p>
             <button onClick={() => this.handleQuantitySum(product)}>+</button>
           </div> */}
-          <div className="subtotal">
-            <p>
-              {product.shipping.free_shipping
-                ? 'Grátis!'
-                : `R$: ${(9.9 * product.qty).toFixed(2)}`}
-            </p>
-          </div>
-          <div className="remove">
-            <p
-              className="remove-btn"
-              onClick={() => this.props.removeFromCart(product.id)}
-            >
-              remove
-            </p>
-          </div>
+          {bool ? null : (
+            <div className="subtotal">
+              <p>
+                {product.shipping.free_shipping
+                  ? 'Grátis!'
+                  : `R$: ${(9.9 * product.qty).toFixed(2)}`}
+              </p>
+            </div>
+          )}
+          {bool ? null : (
+            <div className="remove">
+              <p
+                className="remove-btn"
+                onClick={() => this.props.removeFromCart(product.id)}
+              >
+                remove
+              </p>
+            </div>
+          )}
         </div>
       </div>
     );

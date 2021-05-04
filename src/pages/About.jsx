@@ -49,6 +49,11 @@ export default class About extends Component {
               currSong={currSong}
             />
           </div>
+          <div className="form">
+            <form action="">
+              <input type="text" />
+            </form>
+          </div>
         </div>
       </div>
     );
