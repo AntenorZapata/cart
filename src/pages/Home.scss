@@ -1,0 +1,32 @@
+.section-container {
+  background-color: #f8f6f7;
+
+  .home {
+    width: 65%;
+    margin: -2rem auto;
+    height: 100vh;
+
+    .home-img {
+      width: 100%;
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .image-gradient {
+        background-color: rgba(228, 228, 228, 0.281);
+        width: 65.1%;
+        height: 85%;
+        position: absolute;
+        left: 19.5rem;
+        top: 6.6rem;
+      }
+    }
+  }
+
+  .border-bottom {
+    border-bottom: 1px solid $bordColor4;
+    width: 60%;
+    margin: 0 auto 4rem auto;
+  }
+}

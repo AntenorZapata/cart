@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
+import homeImg from './imgs/home.jpg';
 
 class Home extends Component {
   render() {
     return (
-      <section>
+      <div>
         <Header />
-        <div className="home">
-          <div className="home-content">
-            <h1>home</h1>
+        <section className="section-container">
+          <div className="home">
+            <div className="home-img">
+              <img src={homeImg} alt="home-img" />
+              <div className="image-gradient"></div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     );
   }
 }
