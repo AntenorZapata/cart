@@ -59,6 +59,11 @@ class Products extends Component {
               </div>
             </div>
             <aside className="categories-aside">
+              <div className="categories-title">
+                <h3>Categorias</h3>
+                <div className="line-bottom-categories"></div>
+              </div>
+
               <Categories handleCurrPage={this.handleCurrPage} />
             </aside>
           </section>

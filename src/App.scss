@@ -1,9 +1,9 @@
 @import 'variables.scss';
-@import './components/Cargories.scss';
 @import './components/Card.scss';
 @import './pages/Cart.scss';
 @import './pages/Details.scss';
 @import './pages/Checkout.scss';
+@import './pages/Products.scss';
 @import './pages/About.scss';
 @import './pages/Home.scss';
 @import './components/StarRating.scss';
@@ -23,67 +23,4 @@
 
 ul {
   list-style: none;
-}
-
-.product-container {
-  background-color: rgb(216, 168, 168);
-  min-height: 100vh;
-  display: flex;
-  width: 65%;
-  margin: 4rem auto;
-
-  .section-products {
-    width: 80%;
-    background-color: rgb(211, 211, 154);
-  }
-}
-
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: 0 auto;
-  justify-content: space-around;
-}
-
-.nav-pagination {
-  display: flex;
-  justify-content: center;
-
-  .ul-list {
-    display: flex;
-    margin-top: 0.5rem;
-
-    .page-active {
-      background-color: rgb(165, 165, 211);
-    }
-
-    li {
-      border: 1px solid black;
-      margin: 0.2rem;
-      width: 2rem;
-      cursor: pointer;
-    }
-  }
-}
-
-.cart-login-container {
-  display: flex;
-  width: 10rem;
-  justify-content: flex-end;
-  align-items: center;
-  margin: 1rem;
-
-  .cart {
-    margin-right: 1rem;
-  }
-}
-
-.cart-container,
-.about-container,
-.empty-cart {
-  // background-color: rgb(216, 168, 168);
-  // display: flex;
-  width: 65%;
-  margin: 2.5rem auto;
-  min-height: 100vh;
 }

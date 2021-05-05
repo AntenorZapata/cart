@@ -102,3 +102,25 @@
     width: 20%;
   }
 }
+
+.cart-login-container {
+  display: flex;
+  width: 10rem;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 1rem;
+
+  .cart {
+    margin-right: 1rem;
+  }
+}
+
+.cart-container,
+.about-container,
+.empty-cart {
+  // background-color: rgb(216, 168, 168);
+  // display: flex;
+  width: 65%;
+  margin: 2.5rem auto;
+  min-height: 100vh;
+}
