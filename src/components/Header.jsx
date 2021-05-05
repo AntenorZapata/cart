@@ -26,6 +26,9 @@ class Header extends Component {
             Produtos
           </Link>
         </div>
+        <div className="input-home">
+          <input type="text" id="product" placeholder="Buscar Produtos" />
+        </div>
         <div className="cart-login-container">
           <div className="cart">
             <Link to="/cart" className="link-icon">

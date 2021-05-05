@@ -6,13 +6,15 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <div className="border-bottom"></div>
         <Header />
+
         <section className="section-container">
           <div className="home">
-            <div className="home-img">
-              <img src={homeImg} alt="home-img" />
+            {/* <img src={homeImg} alt="home-img" /> */}
+            {/* <div className="home-img">
               <div className="image-gradient"></div>
-            </div>
+            </div> */}
           </div>
         </section>
       </div>
