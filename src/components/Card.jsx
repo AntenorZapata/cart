@@ -19,23 +19,30 @@ class Card extends Component {
 
     return (
       <div className="card">
-        <h3>{product.title.split(0, 2)}</h3>
-        {/* <img src={product.thumbnail} alt="" /> */}
-        <div className="btn">
-          <button
-            onClick={() => this.handleAddProduct(product.id)}
-            type="button"
-          >
-            +
-          </button>
+        <div className="img-card">
+          <img src={product.thumbnail} alt="img-card" />
         </div>
-        <div className="btn-details">
-          <button
-            type="button"
-            onClick={() => this.props.loadCurrItem(product)}
-          >
-            <Link to="/details">Detalhes</Link>
-          </button>
+        <div className="title-card-container">
+          <h3>{product.title.split(0, 1)}</h3>
+        </div>
+
+        <div className="btns-card">
+          <div className="btn">
+            <button
+              onClick={() => this.handleAddProduct(product.id)}
+              type="button"
+            >
+              +
+            </button>
+          </div>
+          <div className="btn-details">
+            <button
+              type="button"
+              onClick={() => this.props.loadCurrItem(product)}
+            >
+              <Link to="/details">Detalhes</Link>
+            </button>
+          </div>
         </div>
       </div>
     );

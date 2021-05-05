@@ -37,7 +37,7 @@ class ShoppingCart extends Component {
               <img src={product.thumbnail} alt="" />
             </div>
             <div className="name">
-              <h4>{product.title.split(0, 2)}</h4>
+              <h4>{product.title.split(0, 1)}</h4>
             </div>
           </div>
           <div className="price">
