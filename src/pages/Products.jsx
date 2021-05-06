@@ -20,7 +20,7 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchProducts('', 'tecnologia');
+    this.props.fetchProducts('tecnologia');
   }
 
   handlePageChange(page) {
@@ -30,10 +30,16 @@ class Products extends Component {
   handleCurrPage() {
     this.setState({ currPage: 1 });
   }
+
   render() {
     const { length: count } = this.props.products;
     const { pageSize, currPage } = this.state;
-    if (count === 0) return <p>Sem Estoque</p>;
+    if (count === 0)
+      return (
+        <div className="container-spinner">
+          <div className="loading"></div>
+        </div>
+      );
 
     const products = paginate(this.props.products, currPage, pageSize);
 
@@ -81,7 +87,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchCategories: () => dispatch(fetchCategories()),
-    fetchProducts: (id, query) => dispatch(fetchProducts(id, query)),
+    fetchProducts: (query) => dispatch(fetchProducts(query)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

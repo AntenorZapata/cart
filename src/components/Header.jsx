@@ -3,8 +3,34 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import imgZatara from '../pages/imgs/zatarabg.png';
 import { FaOpencart } from 'react-icons/fa';
+import { fetchProducts } from '../actions/postActions';
+import { times } from 'lodash';
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeInput = this.handleChangeInput.bind(this);
+
+    this.state = {
+      fetchproducts: '',
+      makeFetch: false,
+    };
+  }
+
+  handleChange(e) {
+    if (e.keyCode === 13) {
+      this.props.fetchProducts(e.target.value);
+      this.setState({ fetchproducts: '' });
+    }
+  }
+
+  handleChangeInput(e) {
+    const value = e.target.value;
+    this.setState(() => ({ fetchproducts: value }));
+  }
+
   render() {
     const { cart } = this.props;
 
@@ -27,7 +53,15 @@ class Header extends Component {
           </Link>
         </div>
         <div className="input-home">
-          <input type="text" id="product" placeholder="Buscar Produtos" />
+          <input
+            tabIndex="1"
+            onKeyDown={this.handleChange}
+            type="text"
+            id="product"
+            placeholder="Buscar Produtos"
+            onChange={this.handleChangeInput}
+            value={this.state.fetchproducts}
+          />
         </div>
         <div className="cart-login-container">
           <div className="cart">
@@ -46,4 +80,10 @@ const mapStateToProps = (state) => ({
   cart: state.shop.cart,
 });
 
-export default connect(mapStateToProps, null)(Header);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchProducts: (id, query) => dispatch(fetchProducts(id, query)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -25,6 +25,12 @@ class Card extends Component {
         <div className="title-card-container">
           <h3>{product.title.split(0, 1)}</h3>
         </div>
+        <div className="price-card-container">
+          {product.price.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          })}
+        </div>
 
         <div className="btns-card">
           <div className="btn">

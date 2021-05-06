@@ -23,11 +23,9 @@ export function fetchCategories() {
   };
 }
 
-export function fetchProducts(categoryID, query) {
+export function fetchProducts(query) {
   return function (dispatch) {
-    fetch(
-      `https://api.mercadolibre.com/sites/MLB/search?category=${categoryID}&q=${query}`
-    )
+    fetch(`https://api.mercadolibre.com/sites/MLB/search?q=$${query}`)
       .then((response) => response.json())
       .then((data) =>
         dispatch({

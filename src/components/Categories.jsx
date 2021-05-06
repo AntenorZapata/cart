@@ -10,7 +10,7 @@ class Categories extends Component {
 
   handleFetch(query) {
     const { handleCurrPage } = this.props;
-    this.props.fetchProducts('', query);
+    this.props.fetchProducts(query);
     handleCurrPage();
   }
   render() {
@@ -42,7 +42,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchProducts: (id, query) => dispatch(fetchProducts(id, query)),
+    fetchProducts: (query) => dispatch(fetchProducts(query)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);
