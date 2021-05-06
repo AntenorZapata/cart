@@ -87,6 +87,33 @@
   }
 }
 
+.filter-price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .min,
+  .max {
+    width: 3rem;
+  }
+
+  .min {
+    margin: 0 0.3rem 0 -4.5rem;
+  }
+
+  .max {
+    margin-left: 0.4rem;
+  }
+}
+.btn-filter-price {
+  margin: 2rem 0 0 1.7rem;
+
+  button {
+    background-color: red;
+    color: white;
+  }
+}
+
 //CARD
 
 .card {
@@ -135,7 +162,7 @@
 
 .container-spinner {
   width: 10%;
-  margin: 23rem 0 0 35rem;
+  margin: 23rem 0 0 38rem;
 
   text-align: center;
   padding-top: 3rem;

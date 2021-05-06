@@ -12,10 +12,16 @@ class Products extends Component {
     super(props);
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleCurrPage = this.handleCurrPage.bind(this);
+    this.handleFilterClick = this.handleFilterClick.bind(this);
+    this.handleFilterPrice = this.handleFilterPrice.bind(this);
 
     this.state = {
       pageSize: 12,
       currPage: 1,
+      minValue: '',
+      maxValue: '',
+      fetchByPrice: false,
+      filterMin: false,
     };
   }
 
@@ -35,9 +41,43 @@ class Products extends Component {
     this.setState({ currPage: 1 });
   }
 
+  handleFilterPrice(e) {
+    const { name, value } = e.target;
+    const { minValue, maxValue } = this.state;
+
+    if (name === 'minValue' && value !== '') {
+      this.setState({ filterMin: true });
+    } else if (name === 'maxValue' && value !== '') {
+      this.setState({ filterMin: false });
+    }
+
+    if (value === '') {
+      this.setState({ minValue: '', maxValue: '', fetchByPrice: false });
+    } else {
+      parseFloat(e.target.value, 10);
+      this.setState({ [name]: e.target.value, fetchByPrice: true });
+    }
+  }
+
+  handleFilterClick() {
+    this.setState({ fetchByPrice: false, minValue: '', maxValue: '' });
+    this.handleCurrPage();
+  }
+
   render() {
     const { length: count } = this.props.products;
-    const { pageSize, currPage } = this.state;
+    const {
+      pageSize,
+      currPage,
+      minValue,
+      maxValue,
+      fetchByPrice,
+      filterMin,
+    } = this.state;
+
+    console.log(filterMin);
+
+    //loading products
     if (count === 0)
       return (
         <div className="container-spinner">
@@ -45,7 +85,20 @@ class Products extends Component {
         </div>
       );
 
-    const products = paginate(this.props.products, currPage, pageSize);
+    //paginate
+    let products = paginate(this.props.products, currPage, pageSize);
+    let filterPage = this.props.products.filter(
+      (i) => i.price >= minValue && i.price <= maxValue
+    );
+
+    if (filterMin) {
+      filterPage = this.props.products.filter((i) => i.price > minValue);
+    }
+
+    //filter per price
+    if (fetchByPrice) {
+      products = paginate(filterPage, currPage, pageSize);
+    }
 
     return (
       <div>
@@ -61,7 +114,11 @@ class Products extends Component {
               </div>
               <div className="pagination">
                 <Pagination
-                  itemsCount={this.props.products.length - 2}
+                  itemsCount={
+                    fetchByPrice
+                      ? filterPage.length
+                      : this.props.products.length - 2
+                  }
                   pageSize={pageSize}
                   onPageChange={this.handlePageChange}
                   currPage={currPage}
@@ -75,6 +132,30 @@ class Products extends Component {
               </div>
 
               <Categories handleCurrPage={this.handleCurrPage} />
+              <div className="filter-price">
+                <input
+                  type="text"
+                  onChange={this.handleFilterPrice}
+                  className="min"
+                  name="minValue"
+                  value={minValue}
+                  placeholder="min"
+                />
+                <p className="separator">-</p>
+                <input
+                  type="text"
+                  onChange={(e) => this.handleFilterPrice(e)}
+                  className="max"
+                  name="maxValue"
+                  placeholder="max"
+                  value={maxValue}
+                />
+              </div>
+              <div className="btn-filter-price">
+                <button onClick={this.handleFilterClick} type="button">
+                  Limpar Filtro
+                </button>
+              </div>
             </aside>
           </section>
         </section>

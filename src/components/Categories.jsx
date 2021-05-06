@@ -13,6 +13,7 @@ class Categories extends Component {
     this.props.fetchProducts(query);
     handleCurrPage();
   }
+
   render() {
     return (
       <>
