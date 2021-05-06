@@ -20,7 +20,11 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchProducts('tecnologia');
+    if (!this.props.location.state) {
+      this.props.fetchProducts('tecnologia');
+    }
+
+    console.log(this.props.location.state);
   }
 
   handlePageChange(page) {

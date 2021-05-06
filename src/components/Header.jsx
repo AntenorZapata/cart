@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import imgZatara from '../pages/imgs/zatarabg.png';
 import { FaOpencart } from 'react-icons/fa';
@@ -16,13 +16,14 @@ class Header extends Component {
     this.state = {
       fetchproducts: '',
       makeFetch: false,
+      redirect: false,
     };
   }
 
   handleChange(e) {
     if (e.keyCode === 13) {
       this.props.fetchProducts(e.target.value);
-      this.setState({ fetchproducts: '' });
+      this.setState({ fetchproducts: '', redirect: true });
     }
   }
 
@@ -33,6 +34,18 @@ class Header extends Component {
 
   render() {
     const { cart } = this.props;
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/products',
+            state: { bool: true },
+          }}
+        />
+      );
+    }
 
     return (
       <section className="navbar">
