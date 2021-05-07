@@ -20,7 +20,13 @@ class Card extends Component {
     return (
       <div className="card">
         <div className="img-card">
-          <img src={product.thumbnail} alt="img-card" />
+          <Link to="/details">
+            <img
+              onClick={() => this.props.loadCurrItem(product)}
+              src={product.thumbnail}
+              alt="img-card"
+            />
+          </Link>
         </div>
         <div className="title-card-container">
           <h3>{product.title.split(0, 1)}</h3>

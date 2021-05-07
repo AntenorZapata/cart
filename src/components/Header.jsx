@@ -21,6 +21,7 @@ class Header extends Component {
   }
 
   handleChange(e) {
+    const { redirect } = this.state;
     if (e.keyCode === 13) {
       this.props.fetchProducts(e.target.value);
       this.setState({ fetchproducts: '', redirect: true });
@@ -46,6 +47,8 @@ class Header extends Component {
         />
       );
     }
+
+    console.log(this.props);
 
     return (
       <section className="navbar">

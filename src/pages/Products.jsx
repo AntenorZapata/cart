@@ -31,8 +31,6 @@ class Products extends Component {
     if (!this.props.location.state) {
       this.props.fetchProducts('tecnologia');
     }
-
-    console.log(this.props.location.state);
   }
 
   handlePageChange(page) {
@@ -50,9 +48,7 @@ class Products extends Component {
 
   handleFilter({ target }) {
     const { name } = target;
-
     let value = target.type === 'checkbox' ? target.checked : target.value;
-
     this.setState({ [name]: value, filterOn: true });
   }
 
@@ -66,6 +62,8 @@ class Products extends Component {
       shipping,
       filterOn,
     } = this.state;
+
+    console.log(this.props);
 
     // Loading products
     if (count === 0)

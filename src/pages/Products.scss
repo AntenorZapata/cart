@@ -68,15 +68,20 @@
 
   .categories {
     display: flex;
-    justify-content: flex-start;
     text-align: left;
-    margin-top: 0.5rem;
+    margin: 1rem 0;
+    flex-direction: column;
 
-    li {
-      margin: 1.5rem;
+    button {
+      border: none;
+      text-align: center;
+      width: 0;
+
+      margin: 0.8rem 1.5rem;
       cursor: pointer;
       font-size: 16px;
       color: $bordColor6;
+      background-color: red;
 
       &:hover {
         color: $orangeColor;
@@ -120,6 +125,7 @@
   display: flex;
 
   .label-check-shipping {
+    color: rgb(20, 119, 20);
     margin: -0.2rem 0 0 0.4rem;
   }
 }

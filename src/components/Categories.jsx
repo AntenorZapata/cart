@@ -18,19 +18,30 @@ class Categories extends Component {
     return (
       <>
         <section className="categories">
-          <ul>
-            <li onClick={() => this.handleFetch('computadores')}>
-              Computadores
-            </li>
-            <li onClick={() => this.handleFetch('Eletrodomésticos')}>
-              Eletrodomésticos
-            </li>
-            <li onClick={() => this.handleFetch('Instrumentos Musicais')}>
-              Instrumentos Musicais
-            </li>
-            <li onClick={() => this.handleFetch('Roupas')}>Roupas</li>
-            <li onClick={() => this.handleFetch('Celulares')}>Celulares</li>
-          </ul>
+          <button
+            type="button"
+            onClick={() => this.handleFetch('computadores')}
+          >
+            Computadores
+          </button>
+          <button
+            type="button"
+            onClick={() => this.handleFetch('Eletrodomésticos')}
+          >
+            Eletrodomésticos
+          </button>
+          <button
+            type="button"
+            onClick={() => this.handleFetch('Instrumentos Musicais')}
+          >
+            Instrumentos Musicais
+          </button>
+          <button type="button" onClick={() => this.handleFetch('Roupas')}>
+            Roupas
+          </button>
+          <button type="button" onClick={() => this.handleFetch('Celulares')}>
+            Celulares
+          </button>
         </section>
       </>
     );
