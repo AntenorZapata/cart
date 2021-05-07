@@ -105,12 +105,22 @@
     margin-left: 0.4rem;
   }
 }
+
 .btn-filter-price {
   margin: 2rem 0 0 1.7rem;
 
   button {
     background-color: red;
     color: white;
+  }
+}
+
+.checkbox-shipping {
+  margin: 2rem 0 0 1.5rem;
+  display: flex;
+
+  .label-check-shipping {
+    margin: -0.2rem 0 0 0.4rem;
   }
 }
 

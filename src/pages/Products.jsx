@@ -12,8 +12,8 @@ class Products extends Component {
     super(props);
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleCurrPage = this.handleCurrPage.bind(this);
-    this.handleFilterClick = this.handleFilterClick.bind(this);
-    this.handleFilterPrice = this.handleFilterPrice.bind(this);
+    this.handleClearFilter = this.handleClearFilter.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
 
     this.state = {
       pageSize: 12,
@@ -22,6 +22,8 @@ class Products extends Component {
       maxValue: '',
       fetchByPrice: false,
       filterMin: false,
+      shipping: false,
+      filterOn: false,
     };
   }
 
@@ -41,27 +43,17 @@ class Products extends Component {
     this.setState({ currPage: 1 });
   }
 
-  handleFilterPrice(e) {
-    const { name, value } = e.target;
-    const { minValue, maxValue } = this.state;
-
-    if (name === 'minValue' && value !== '') {
-      this.setState({ filterMin: true });
-    } else if (name === 'maxValue' && value !== '') {
-      this.setState({ filterMin: false });
-    }
-
-    if (value === '') {
-      this.setState({ minValue: '', maxValue: '', fetchByPrice: false });
-    } else {
-      parseFloat(e.target.value, 10);
-      this.setState({ [name]: e.target.value, fetchByPrice: true });
-    }
+  handleClearFilter() {
+    this.setState({ minValue: '', maxValue: '' });
+    this.handleCurrPage();
   }
 
-  handleFilterClick() {
-    this.setState({ fetchByPrice: false, minValue: '', maxValue: '' });
-    this.handleCurrPage();
+  handleFilter({ target }) {
+    const { name } = target;
+
+    let value = target.type === 'checkbox' ? target.checked : target.value;
+
+    this.setState({ [name]: value, filterOn: true });
   }
 
   render() {
@@ -71,13 +63,11 @@ class Products extends Component {
       currPage,
       minValue,
       maxValue,
-      fetchByPrice,
-      filterMin,
+      shipping,
+      filterOn,
     } = this.state;
 
-    console.log(filterMin);
-
-    //loading products
+    // Loading products
     if (count === 0)
       return (
         <div className="container-spinner">
@@ -85,25 +75,35 @@ class Products extends Component {
         </div>
       );
 
-    //paginate
+    // Paginate
     let products = paginate(this.props.products, currPage, pageSize);
-    let filterPage = this.props.products.filter(
-      (i) => i.price >= minValue && i.price <= maxValue
-    );
+    let filterPage = this.props.products;
 
-    if (filterMin) {
-      filterPage = this.props.products.filter((i) => i.price > minValue);
+    // Filter by shipping
+
+    if (shipping) {
+      filterPage = this.props.products.filter(
+        (i) => i.shipping.free_shipping === true
+      );
+      products = paginate(filterPage, currPage, pageSize);
     }
 
-    //filter per price
-    if (fetchByPrice) {
+    // Filter by Price
+
+    if (minValue || maxValue) {
+      if (minValue !== '' && maxValue === '') {
+        filterPage = this.props.products.filter((i) => i.price > minValue);
+      } else {
+        filterPage = this.props.products.filter(
+          (i) => i.price >= minValue && i.price <= maxValue
+        );
+      }
       products = paginate(filterPage, currPage, pageSize);
     }
 
     return (
       <div>
         <Header />
-
         <section className="content">
           <section className="product-container">
             <div className="section-products">
@@ -115,7 +115,7 @@ class Products extends Component {
               <div className="pagination">
                 <Pagination
                   itemsCount={
-                    fetchByPrice
+                    filterOn
                       ? filterPage.length
                       : this.props.products.length - 2
                   }
@@ -130,12 +130,11 @@ class Products extends Component {
                 <h3>Categorias</h3>
                 <div className="line-bottom-categories"></div>
               </div>
-
               <Categories handleCurrPage={this.handleCurrPage} />
               <div className="filter-price">
                 <input
                   type="text"
-                  onChange={this.handleFilterPrice}
+                  onChange={this.handleFilter}
                   className="min"
                   name="minValue"
                   value={minValue}
@@ -144,7 +143,7 @@ class Products extends Component {
                 <p className="separator">-</p>
                 <input
                   type="text"
-                  onChange={(e) => this.handleFilterPrice(e)}
+                  onChange={this.handleFilter}
                   className="max"
                   name="maxValue"
                   placeholder="max"
@@ -152,9 +151,18 @@ class Products extends Component {
                 />
               </div>
               <div className="btn-filter-price">
-                <button onClick={this.handleFilterClick} type="button">
+                <button onClick={this.handleClearFilter} type="button">
                   Limpar Filtro
                 </button>
+              </div>
+              <div className="checkbox-shipping">
+                <input
+                  name="shipping"
+                  type="checkbox"
+                  onChange={this.handleFilter}
+                  value={shipping}
+                />
+                <label className="label-check-shipping">Frete Grátis</label>
               </div>
             </aside>
           </section>
@@ -166,12 +174,10 @@ class Products extends Component {
 
 const mapStateToProps = (state) => ({
   products: state.shop.products,
-  categories: state.shop.categories,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchCategories: () => dispatch(fetchCategories()),
     fetchProducts: (query) => dispatch(fetchProducts(query)),
   };
 };
