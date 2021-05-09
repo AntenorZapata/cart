@@ -8,6 +8,7 @@ import {
   LOAD_CURRENT_ITEM,
   ADD_REVIEW,
   LOAD_REVIEW,
+  FETCH_TRUE,
 } from '../actions/types';
 
 const initialState = {
@@ -17,10 +18,17 @@ const initialState = {
   cart: [],
   count: 1,
   rating: [],
+  bool: false,
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case FETCH_TRUE:
+      return {
+        ...state,
+        bool: action.payload,
+      };
+
     case FETCH_CATEGORIES:
       return {
         ...state,

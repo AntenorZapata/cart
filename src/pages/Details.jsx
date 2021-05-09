@@ -20,7 +20,7 @@ class Details extends Component {
       item: {},
       showCart: false,
       reload: true,
-      rating: 0,
+      starValue: 0,
       email: '',
       avaliation: '',
     };
@@ -35,8 +35,8 @@ class Details extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { item, email, avaliation, rating } = this.state;
-    this.props.addReview(item.id, email, avaliation, rating);
+    const { item, email, avaliation, starValue } = this.state;
+    this.props.addReview(item.id, email, avaliation, starValue);
   }
 
   handleAddToCart(id) {
@@ -50,7 +50,8 @@ class Details extends Component {
   }
 
   handleRating(value) {
-    this.setState({ rating: value });
+    console.log(value);
+    this.setState({ starValue: value });
   }
 
   handleValue(e) {
@@ -66,20 +67,23 @@ class Details extends Component {
         {rating
           .filter((elem) => elem.id === id)
           .map((i, index) => (
-            <StarRating key={index} />
+            <div key={index}>
+              <StarRating starValue={i.rating} />
+              <p>{i.email}</p>
+            </div>
           ))}
       </div>
     );
   }
 
   handleShowRating() {
-    const { rating } = this.state;
+    const { starValue } = this.state;
     return (
       <div>
         <StarRating
           bool={true}
           handleRating={this.handleRating}
-          rating={rating}
+          starValue={starValue}
         />
         <FormRating
           handleValue={this.handleValue}
@@ -96,61 +100,92 @@ class Details extends Component {
     return (
       <div>
         <Header />
-        <div className="details">
-          {!show ? (
-            <div className="no-selected-product">
-              Nenhum produto selecionado: sem localStorage :P
-            </div>
-          ) : (
-            <div className="details-content">
-              <div className="left-content">
-                <img src={item.thumbnail} alt="" />
+        <div className="details-container">
+          <div className="details">
+            {!show ? (
+              <div className="no-selected-product">
+                Nenhum produto selecionado.
               </div>
-              <div className="right-content">
-                <div className="item-details-title">
-                  <h3>{item.title.split(0, 2)}</h3>
-                </div>
-                <div className="item-details">
-                  <h4>
-                    Condição:
-                    {item.condition === 'new' ? ' Novo' : 'usado'}
-                  </h4>
-                  <div className="details-price">
-                    <h4>
-                      {item.price.toLocaleString('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL',
-                      })}
-                    </h4>
+            ) : (
+              <div className="details-content">
+                <div className="left-content">
+                  <div className="popup-left-content">
+                    <ul>
+                      <li>
+                        <div className="content-popup">
+                          <p>
+                            Aglumas imagens estão com baixa resolução por conta
+                            do tamanho dos arquivos fornecidos pela API.
+                          </p>
+                        </div>
+                      </li>
+                    </ul>
                   </div>
+                  <img src={item.thumbnail} alt="" />
                 </div>
-                <div className="available-quantity">
-                  <p>Estoque: {item.available_quantity}</p>
-                </div>
-                <div className="btn-details-add">
-                  <button
-                    type="button"
-                    onClick={() => this.handleAddToCart(item.id)}
-                  >
-                    Adicionar
-                  </button>
-                  {this.handleShowRating()}
-                  {rating.length
-                    ? this.handleShowDivReviews(rating, item.id)
-                    : null}
-                  {showCart ? (
-                    <div>
-                      <div className="btns-details-cart">
-                        <BtnsQuantity product={this.handleItemCart(item.id)} />
-                      </div>
-                      <Link to="/cart">ver carrinho</Link>
+                <div className="right-content">
+                  <div className="item-details-title">
+                    <h1>{item.title.split(0, 1)}</h1>
+                  </div>
+                  <div className="item-details">
+                    <h4 className="condition">
+                      Condição:
+                      {item.condition === 'new' ? ' Novo' : 'usado'}
+                    </h4>
+                    <div className="details-description">
+                      <h3>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Iste voluptatem quos delectus amet voluptatibus est rem
+                        praesentium vel ea sunt suscipit recusandae nulla
+                      </h3>
                     </div>
-                  ) : null}
+                    <div className="details-price">
+                      <h4>
+                        {item.price.toLocaleString('pt-BR', {
+                          style: 'currency',
+                          currency: 'BRL',
+                        })}
+                      </h4>
+                    </div>
+                  </div>
+                  <div className="available-quantity">
+                    Estoque:
+                    <span
+                      style={{
+                        color: item.available_quantity > 10 ? 'green' : 'red',
+                      }}
+                    >
+                      {item.available_quantity}
+                    </span>
+                  </div>
+                  <div className="btn-details-add">
+                    <button
+                      className="btn-add"
+                      type="button"
+                      onClick={() => this.handleAddToCart(item.id)}
+                    >
+                      Adicionar
+                    </button>
+                    {showCart ? (
+                      <div>
+                        <div className="btns-details-cart">
+                          <BtnsQuantity
+                            product={this.handleItemCart(item.id)}
+                          />
+                        </div>
+                        <Link to="/cart">ver carrinho</Link>
+                      </div>
+                    ) : null}
+                  </div>
+                  <Link to="/products">Voltar</Link>
                 </div>
               </div>
-              <Link to="/products">Voltar</Link>
-            </div>
-          )}
+            )}
+          </div>
+          <div className="show-review">
+            {this.handleShowRating()}
+            {rating.length ? this.handleShowDivReviews(rating, item.id) : null}
+          </div>
         </div>
       </div>
     );
@@ -167,8 +202,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (id) => dispatch(addToCart(id)),
     loadReview: (id) => dispatch(loadReview(id)),
-    addReview: (id, email, msg, rating) =>
-      dispatch(addReview(id, email, msg, rating)),
+    addReview: (id, email, msg, starValue) =>
+      dispatch(addReview(id, email, msg, starValue)),
   };
 };
 

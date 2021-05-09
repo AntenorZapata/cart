@@ -3,8 +3,10 @@ import { AiFillStar } from 'react-icons/ai';
 
 class StarRatings extends Component {
   render() {
-    const { bool, rating, handleRating } = this.props;
+    const { bool, starValue, handleRating } = this.props;
     const num = 5;
+
+    console.log(starValue);
 
     return (
       <div className="star-rating">
@@ -15,13 +17,13 @@ class StarRatings extends Component {
               <input
                 id={index}
                 type="radio"
-                name="rating"
+                name="starValue"
                 value={ratingValue}
                 onClick={() => handleRating(ratingValue)}
               />
 
               <AiFillStar
-                color={ratingValue <= rating ? '#000000' : '#a9a9a9'}
+                color={ratingValue <= starValue ? '#000000' : '#a9a9a9'}
                 className="star"
               />
             </label>

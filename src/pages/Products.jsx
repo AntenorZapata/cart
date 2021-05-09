@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCategories, fetchProducts } from '../actions/postActions';
+import { fetchProducts } from '../actions/postActions';
 import Categories from '../components/Categories';
 import Header from '../components/Header';
 import Card from '../components/Card';
@@ -20,17 +20,19 @@ class Products extends Component {
       currPage: 1,
       minValue: '',
       maxValue: '',
-      fetchByPrice: false,
-      filterMin: false,
       shipping: false,
       filterOn: false,
     };
   }
 
   componentDidMount() {
-    if (!this.props.location.state) {
+    if (!this.props.bool) {
       this.props.fetchProducts('tecnologia');
     }
+  }
+
+  componentDidUpdate() {
+    console.log(this.props.products.length);
   }
 
   handlePageChange(page) {
@@ -49,7 +51,9 @@ class Products extends Component {
   handleFilter({ target }) {
     const { name } = target;
     let value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState({ [name]: value, filterOn: true });
+    this.setState({ [name]: value, filterOn: true }, () => {
+      this.handleCurrPage();
+    });
   }
 
   render() {
@@ -61,12 +65,11 @@ class Products extends Component {
       maxValue,
       shipping,
       filterOn,
+      bool,
     } = this.state;
 
-    console.log(this.props);
-
     // Loading products
-    if (count === 0)
+    if (!count)
       return (
         <div className="container-spinner">
           <div className="loading"></div>
@@ -101,10 +104,11 @@ class Products extends Component {
 
     return (
       <div>
-        <Header />
+        <Header handleFetchItems={this.handleFetchItems} />
         <section className="content">
           <section className="product-container">
             <div className="section-products">
+              {bool}
               <div className="card-container">
                 {products.map((item) => {
                   return <Card key={item.id} product={item} />;
@@ -114,7 +118,7 @@ class Products extends Component {
                 <Pagination
                   itemsCount={
                     filterOn
-                      ? filterPage.length
+                      ? filterPage.length - 2
                       : this.props.products.length - 2
                   }
                   pageSize={pageSize}
@@ -172,6 +176,7 @@ class Products extends Component {
 
 const mapStateToProps = (state) => ({
   products: state.shop.products,
+  bool: state.shop.bool,
 });
 
 const mapDispatchToProps = (dispatch) => {

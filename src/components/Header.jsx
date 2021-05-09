@@ -5,6 +5,7 @@ import imgZatara from '../pages/imgs/zatarabg.png';
 import { FaOpencart } from 'react-icons/fa';
 import { fetchProducts } from '../actions/postActions';
 import { times } from 'lodash';
+import { useLocation } from 'react-router-dom';
 
 class Header extends Component {
   constructor(props) {
@@ -12,43 +13,49 @@ class Header extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
+    // this.handleFetchClick = this.handleFetchClick.bind(this);
 
     this.state = {
-      fetchproducts: '',
+      fetchProducts: '',
       makeFetch: false,
       redirect: false,
     };
   }
 
+  // handleFetchClick() {
+  //   const product = localStorage.setItem('product', 'produtos da loja');
+  // }
+
   handleChange(e) {
     const { redirect } = this.state;
+    const { handleFetchItems } = this.props;
+
     if (e.keyCode === 13) {
       this.props.fetchProducts(e.target.value);
-      this.setState({ fetchproducts: '', redirect: true });
+      this.setState({ redirect: true, fetchProducts: '' });
+      const product = localStorage.setItem('product', 'produtos da loja');
     }
   }
 
-  handleChangeInput(e) {
-    const value = e.target.value;
-    this.setState(() => ({ fetchproducts: value }));
+  handleChangeInput({ target }) {
+    const { value } = target;
+    this.setState({ fetchProducts: value });
   }
 
   render() {
     const { cart } = this.props;
     const { redirect } = this.state;
 
-    if (redirect) {
+    const path = window.location.pathname;
+    if (redirect && path !== '/products') {
       return (
         <Redirect
           to={{
             pathname: '/products',
-            state: { bool: true },
           }}
         />
       );
     }
-
-    console.log(this.props);
 
     return (
       <section className="navbar">
@@ -64,7 +71,13 @@ class Header extends Component {
           <Link className="navigation-link" to="/about">
             Sobre
           </Link>
-          <Link className="navigation-link" to="/products">
+          <Link
+            onClick={this.handleFetchClick}
+            className="navigation-link"
+            to={{
+              pathname: '/products',
+            }}
+          >
             Produtos
           </Link>
         </div>
@@ -76,7 +89,7 @@ class Header extends Component {
             id="product"
             placeholder="Buscar Produtos"
             onChange={this.handleChangeInput}
-            value={this.state.fetchproducts}
+            value={this.state.fetchProducts}
           />
         </div>
         <div className="cart-login-container">
@@ -94,6 +107,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   cart: state.shop.cart,
+  products: state.shop.products,
 });
 
 const mapDispatchToProps = (dispatch) => {

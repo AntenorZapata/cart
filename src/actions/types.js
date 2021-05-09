@@ -7,3 +7,4 @@ export const ADJUST_QTY_SUBTRACT = 'ADJUST_QTY_SUBTRACT';
 export const LOAD_CURRENT_ITEM = 'LOAD_CURRENT_ITEM';
 export const ADD_REVIEW = 'ADD_REVIEW';
 export const LOAD_REVIEW = 'LOAD_REVIEW';
+export const FETCH_TRUE = ' FETCH_TRUE';
