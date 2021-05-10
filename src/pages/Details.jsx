@@ -133,11 +133,11 @@ class Details extends Component {
                       {item.condition === 'new' ? ' Novo' : 'usado'}
                     </h4>
                     <div className="details-description">
-                      <h3>
+                      <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Iste voluptatem quos delectus amet voluptatibus est rem
                         praesentium vel ea sunt suscipit recusandae nulla
-                      </h3>
+                      </p>
                     </div>
                     <div className="details-price">
                       <h4>
@@ -168,16 +168,24 @@ class Details extends Component {
                     </button>
                     {showCart ? (
                       <div>
-                        <div className="btns-details-cart">
+                        <div className="btns-quantity-details">
                           <BtnsQuantity
                             product={this.handleItemCart(item.id)}
                           />
                         </div>
-                        <Link to="/cart">ver carrinho</Link>
+                        <div className="see-cart">
+                          <Link className="see-cart-link" to="/cart">
+                            Ver carrinho
+                          </Link>
+                        </div>
                       </div>
                     ) : null}
                   </div>
-                  <Link to="/products">Voltar</Link>
+                  <div className="back-to-products">
+                    <Link className="back-link" to="/products">
+                      Voltar
+                    </Link>
+                  </div>
                 </div>
               </div>
             )}

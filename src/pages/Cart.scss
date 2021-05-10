@@ -2,22 +2,25 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: green;
+  // background-color: green;
   align-items: center;
   text-align: center;
 
-  align-items: center;
   .title {
-    background-color: red;
+    // background-color: red;
     width: 100%;
     height: 2%;
-    margin-top: 7rem;
+    margin: 7rem 0 2rem 0;
     display: flex;
     justify-content: space-around;
+
+    h4 {
+      width: 20%;
+    }
   }
 
   .cart-products-container {
-    background-color: blue;
+    // background-color: blue;
     width: 100%;
     height: 10rem;
     margin-bottom: 1rem;
@@ -25,7 +28,7 @@
   }
 
   .total-container {
-    background-color: rgb(204, 174, 174);
+    // background-color: rgb(204, 174, 174);
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -34,7 +37,7 @@
 
     .total {
       border: 1px solid black;
-      background-color: palegreen;
+      // background-color: palegreen;
       display: flex;
       flex-direction: column;
       width: 50%;
@@ -51,9 +54,9 @@
 .prod {
   display: flex;
   width: 100%;
-  background-color: gray;
   height: 100%;
   align-items: center;
+  justify-content: space-around;
 
   .img-name {
     width: 20%;
@@ -62,44 +65,35 @@
       img {
         width: 5rem;
         height: 5em;
-        // margin-left: -1.5rem;
       }
     }
   }
 
   .price {
-    p {
-      margin-left: -3.5rem;
-    }
-    width: 20%;
-  }
-
-  .btns-qty {
-    margin-left: 4.5rem;
-
     width: 20%;
     display: flex;
-
     justify-content: center;
 
-    button {
-      width: 3rem;
+    p {
+      // margin-left: -3.5rem;
     }
   }
 
   .subtotal {
-    p {
-      margin-left: 3rem;
-    }
     width: 20%;
+
+    p {
+      // margin-left: 3rem;
+    }
   }
 
   .remove {
+    width: 20%;
+
     p {
-      margin-left: 4rem;
+      // margin-left: 4rem;
       cursor: pointer;
     }
-    width: 20%;
   }
 }
 

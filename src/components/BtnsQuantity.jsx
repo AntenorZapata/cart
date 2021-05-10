@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { adjustQtySum, adjustQtySubtract } from '../actions/postActions';
+import { GrSubtractCircle } from 'react-icons/gr';
+import { AiFillPlusCircle } from 'react-icons/ai';
 
 class BtnsQuantity extends Component {
   handleQuantitySum(prod) {
-    console.log(prod);
     if (prod.qty < prod.available_quantity) {
       this.props.adjustQtySum(prod.id, 1);
     }
@@ -17,17 +18,23 @@ class BtnsQuantity extends Component {
   }
   render() {
     const { product } = this.props;
+    console.log(`product: ${product.id}`);
     return (
       <div>
         <div className="btns-qty">
-          <button
-            disabled={product.qty === 1 ? true : false}
-            onClick={() => this.handleQuantitySubtract(product)}
-          >
-            -
-          </button>
-          <p>{product.qty}</p>
-          <button onClick={() => this.handleQuantitySum(product)}>+</button>
+          <div className="min-container">
+            <GrSubtractCircle
+              className="min-btn-details"
+              onClick={() => this.handleQuantitySubtract(product)}
+            ></GrSubtractCircle>
+          </div>
+          <div className="amount-cart">{product.qty}</div>
+          <div className="max-container">
+            <AiFillPlusCircle
+              className="max-btn-details"
+              onClick={() => this.handleQuantitySum(product)}
+            ></AiFillPlusCircle>
+          </div>
         </div>
       </div>
     );

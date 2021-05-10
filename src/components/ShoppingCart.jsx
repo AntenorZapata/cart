@@ -10,21 +10,21 @@ import BtnsQuantity from './BtnsQuantity';
 class ShoppingCart extends Component {
   constructor(props) {
     super(props);
-    // this.handleQuantitySum = this.handleQuantitySum.bind(this);
-    // this.handleQuantitySubtract = this.handleQuantitySubtract.bind(this);
+    this.handleQuantitySum = this.handleQuantitySum.bind(this);
+    this.handleQuantitySubtract = this.handleQuantitySubtract.bind(this);
   }
 
-  // handleQuantitySum(prod) {
-  //   if (prod.qty < prod.available_quantity) {
-  //     this.props.adjustQtySum(prod.id, 1);
-  //   }
-  // }
+  handleQuantitySum(prod) {
+    if (prod.qty < prod.available_quantity) {
+      this.props.adjustQtySum(prod.id, 1);
+    }
+  }
 
-  // handleQuantitySubtract(prod) {
-  //   if (prod.qty > 1) {
-  //     this.props.adjustQtySubtract(prod.id, 1);
-  //   }
-  // }
+  handleQuantitySubtract(prod) {
+    if (prod.qty > 1) {
+      this.props.adjustQtySubtract(prod.id, 1);
+    }
+  }
 
   render() {
     const { product, bool } = this.props;
@@ -48,23 +48,9 @@ class ShoppingCart extends Component {
               })}
             </p>
           </div>
-          {bool ? null : (
-            <BtnsQuantity
-              handleQuantitySum={this.handleQuantitySum}
-              handleQuantitySubtract={this.handleQuantitySubtract}
-              product={product}
-            />
-          )}
-          {/* <div className="btns-qty">
-            <button
-              disabled={product.qty === 1 ? true : false}
-              onClick={() => this.handleQuantitySubtract(product)}
-            >
-              -
-            </button>
-            <p>{product.qty}</p>
-            <button onClick={() => this.handleQuantitySum(product)}>+</button>
-          </div> */}
+          <div className="btns-quantity">
+            <BtnsQuantity product={product} />
+          </div>
           {bool ? null : (
             <div className="subtotal">
               <p>
