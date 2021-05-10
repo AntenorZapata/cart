@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { addToCart, loadCurrItem } from '../actions/postActions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { AiFillPlusCircle } from 'react-icons/ai';
 
 class Card extends Component {
   constructor(props) {
@@ -29,7 +30,11 @@ class Card extends Component {
           </Link>
         </div>
         <div className="title-card-container">
-          <h3>{product.title.split(0, 1)}</h3>
+          <p>
+            {product.title.length > 70
+              ? product.title.split(0, 1)
+              : product.title}
+          </p>
         </div>
         <div className="price-card-container">
           {product.price.toLocaleString('pt-BR', {
@@ -37,24 +42,22 @@ class Card extends Component {
             currency: 'BRL',
           })}
         </div>
-
         <div className="btns-card">
           <div className="btn">
-            <button
+            <AiFillPlusCircle
+              className="max-btn-card"
               onClick={() => this.handleAddProduct(product.id)}
               type="button"
-            >
-              +
-            </button>
+            ></AiFillPlusCircle>
           </div>
-          <div className="btn-details">
-            <button
-              type="button"
-              onClick={() => this.props.loadCurrItem(product)}
-            >
-              <Link to="/details">Detalhes</Link>
-            </button>
-          </div>
+          {/* <div className="btn-details">
+              <button
+                type="button"
+                onClick={() => this.props.loadCurrItem(product)}
+              >
+                <Link to="/details">Detalhes</Link>
+              </button>
+            </div> */}
         </div>
       </div>
     );
