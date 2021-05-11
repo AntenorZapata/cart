@@ -73,17 +73,22 @@ export default class About extends Component {
               currSong={currSong}
             />
           </div>
-
           <div className="form">
             <form onSubmit={this.handleSendEmail}>
-              <div className="about-name">
+              <div className="input-email-rating">
                 <input type="text" placeholder="Nome" required name="name" />
               </div>
-              <div className="about-email">
+              <div className="input-email-rating">
                 <input type="email" placeholder="Email" required name="email" />
               </div>
-              <div className="about-textarea">
-                <textarea id="" cols="20" rows="10" name="message"></textarea>
+              <div className="text-area-rating">
+                <textarea
+                  className="textarea-about"
+                  id=""
+                  cols="20"
+                  rows="10"
+                  name="message"
+                ></textarea>
               </div>
               <div className="about-btn">
                 <button type="submit">Enviar</button>

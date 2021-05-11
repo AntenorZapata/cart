@@ -6,6 +6,7 @@ import {
 } from '../actions/postActions';
 import { connect } from 'react-redux';
 import BtnsQuantity from './BtnsQuantity';
+import { RiDeleteBack2Fill } from 'react-icons/ri';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -62,12 +63,16 @@ class ShoppingCart extends Component {
           )}
           {bool ? null : (
             <div className="remove">
-              <p
+              <RiDeleteBack2Fill
+                className="remove-btn"
+                onClick={() => this.props.removeFromCart(product.id)}
+              />
+              {/* <p
                 className="remove-btn"
                 onClick={() => this.props.removeFromCart(product.id)}
               >
                 remove
-              </p>
+              </p> */}
             </div>
           )}
         </div>

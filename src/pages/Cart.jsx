@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { adjustQty, removeFromCart } from '../actions/postActions';
 import ShoppingCart from '../components/ShoppingCart';
 import { Link } from 'react-router-dom';
+import { MdRemoveShoppingCart } from 'react-icons/md';
 
 class Cart extends Component {
   constructor(props) {
@@ -49,7 +50,15 @@ class Cart extends Component {
       <div>
         <Header />
         {!this.props.cart.length ? (
-          <div className="empty-cart">Não há produtos no carrinho.</div>
+          <div className="empty-cart">
+            <div className="back-to-products">
+              <Link className="back-link back-link-cart" to="/products">
+                Voltar
+              </Link>
+            </div>
+            <p>Não há produtos no carrinho.</p>
+            <MdRemoveShoppingCart className="empty-cart-icon" />
+          </div>
         ) : (
           <div className="cart-container">
             <div className="cart-products">

@@ -40,7 +40,7 @@ class Details extends Component {
       this.props.addReview(item.id, email, avaliation, starValue);
       this.setState({ starValue: 0, email: '', avaliation: '' });
     } else {
-      window.alert('Preencha todos os campos');
+      window.alert('Preencha todos os campos.');
     }
   }
 
@@ -63,8 +63,6 @@ class Details extends Component {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   }
-
-  // handleLoadReview(item) {}
 
   handleShowDivReviews(rating, id) {
     return (

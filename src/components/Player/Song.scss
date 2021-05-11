@@ -12,9 +12,13 @@
     justify-content: center;
 
     h1,
-    h2,
-    h3 {
+    h2 {
       color: rgb(54, 54, 54);
+    }
+
+    h3 {
+      color: inherit;
+      font-family: 'Karla';
     }
 
     img {
