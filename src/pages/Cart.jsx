@@ -49,7 +49,7 @@ class Cart extends Component {
       <div>
         <Header />
         {!this.props.cart.length ? (
-          <div className="empty-cart">Seu carrinho está vazio</div>
+          <div className="empty-cart">Não há produtos no carrinho.</div>
         ) : (
           <div className="cart-container">
             <div className="cart-products">

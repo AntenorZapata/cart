@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import { addToCart, addReview, loadReview } from '../actions/postActions';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import BtnsQuantity from '../components/BtnsQuantity';
 import StarRating from '../components/StarRatings';
 import FormRating from '../components/FormRating';
@@ -26,7 +26,7 @@ class Details extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.currItem) {
       this.setState({ show: true });
       this.setState({ item: this.props.currItem });
@@ -36,7 +36,12 @@ class Details extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { item, email, avaliation, starValue } = this.state;
-    this.props.addReview(item.id, email, avaliation, starValue);
+    if (email && avaliation) {
+      this.props.addReview(item.id, email, avaliation, starValue);
+      this.setState({ starValue: 0, email: '', avaliation: '' });
+    } else {
+      window.alert('Preencha todos os campos');
+    }
   }
 
   handleAddToCart(id) {
@@ -59,17 +64,18 @@ class Details extends Component {
     this.setState({ [name]: value });
   }
 
-  handleLoadReview(item) {}
+  // handleLoadReview(item) {}
 
   handleShowDivReviews(rating, id) {
     return (
-      <div>
+      <div className="show-review-details">
         {rating
           .filter((elem) => elem.id === id)
           .map((i, index) => (
             <div key={index}>
-              <StarRating starValue={i.rating} />
+              <StarRating className="show-rating" starValue={i.rating} />
               <p>{i.email}</p>
+              <p>{i.msg}</p>
             </div>
           ))}
       </div>
@@ -77,7 +83,7 @@ class Details extends Component {
   }
 
   handleShowRating() {
-    const { starValue } = this.state;
+    const { starValue, email, avaliation } = this.state;
     return (
       <div>
         <StarRating
@@ -88,6 +94,8 @@ class Details extends Component {
         <FormRating
           handleValue={this.handleValue}
           handleSubmit={this.handleSubmit}
+          avaliation={avaliation}
+          email={email}
         />
       </div>
     );
@@ -105,6 +113,7 @@ class Details extends Component {
             {!show ? (
               <div className="no-selected-product">
                 Nenhum produto selecionado.
+                <Redirect to="/products" />
               </div>
             ) : (
               <div className="details-content">

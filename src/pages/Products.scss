@@ -57,6 +57,7 @@
 
     h3 {
       font-size: 20px;
+      font-weight: bold;
     }
     .line-bottom-categories {
       border-bottom: 1px solid $bordColor4;
@@ -80,13 +81,24 @@
       margin: 0.8rem 1.5rem;
       cursor: pointer;
       font-size: 16px;
-      color: $bordColor6;
-      background-color: red;
+      color: $bordColor2;
+      background-color: $orangeColor;
+      transition: all 0.2s ease-in-out;
 
       &:hover {
         color: $orangeColor;
+        width: 8rem;
+        color: white;
+        padding: 0.3rem 0;
+        border-radius: 4px;
+        font-size: 14px;
 
-        transition: 0.3s;
+        transition: 0.2s;
+      }
+
+      &:active {
+        background-color: $orangeColorHover;
+        transform: translateY(2px);
       }
     }
   }
@@ -100,6 +112,13 @@
   .min,
   .max {
     width: 3rem;
+    border: none;
+    border: 1px solid $bordColor1;
+    font-size: 14px;
+    text-align: center;
+    box-shadow: 1px 1px $bordColor4;
+    background-color: rgb(255, 255, 255), rgb(59, 59, 59);
+    outline: none;
   }
 
   .min {
@@ -115,13 +134,22 @@
   margin: 2rem 0 0 1.7rem;
 
   button {
-    // background-color: red;
+    background-color: red;
     color: white;
+    border: none;
+    font-size: 15px;
+    padding: 0.15rem 0.4rem;
+    border-radius: 5px;
+
+    &:active {
+      background-color: rgb(126, 23, 23);
+      transform: translateY(1.5px);
+    }
   }
 }
 
 .checkbox-shipping {
-  margin: 2rem 0 0 1.5rem;
+  margin: 2rem 0 0 1.8rem;
   display: flex;
 
   .label-check-shipping {
@@ -134,7 +162,8 @@
 
 .card {
   border: 0.4px solid #af996b52;
-
+  transition: all 0.2s ease-in-out;
+  overflow: hidden;
   // display: grid;
   // grid-template-columns: 19vh;
   margin: 50px 15px -3rem 15px;
@@ -163,6 +192,10 @@
       &:hover {
         color: $orangeColorHover;
         transition: 0.3s;
+      }
+
+      &:active {
+        transform: translateY(2px);
       }
     }
   }
@@ -229,7 +262,8 @@
 
 .card:hover {
   background-color: $bordColor5;
-  transition: 0.3s;
+
+  transform: scale(1.04);
 
   .price-card-container {
     // margin: 1rem -1rem;

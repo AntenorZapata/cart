@@ -165,8 +165,8 @@
     width: 100%;
     display: flex;
     justify-content: left;
-    align-items: center;
     margin: -20rem 0;
+    flex-direction: column;
   }
 }
 
@@ -251,5 +251,16 @@
       background-color: rgba(141, 138, 138, 0.589);
       transition: 0.3s;
     }
+  }
+}
+
+.show-review-details {
+  margin: 2rem 0;
+
+  .show-rating {
+    margin-bottom: 5rem;
+  }
+  p {
+    margin-bottom: 1rem;
   }
 }
