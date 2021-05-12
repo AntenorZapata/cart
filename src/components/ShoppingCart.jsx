@@ -76,6 +76,7 @@ class ShoppingCart extends Component {
             </div>
           )}
         </div>
+        <div className="line-bottom"></div>
       </div>
     );
   }

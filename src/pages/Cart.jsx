@@ -69,13 +69,19 @@ class Cart extends Component {
                 <h4>Frete</h4>
                 <h4>Excluir do Carrinho</h4>
               </div>
+              <div className="line-bottom"></div>
 
               {this.props.cart.map((prod) => (
                 <div key={prod.id} className="cart-products-container">
                   <ShoppingCart product={prod} />
                 </div>
               ))}
-              <Link to="/products">Continuar Comprando</Link>
+              <div className="back-to-products">
+                <Link to="/products" className="back-link back-cart">
+                  Continuar Comprando
+                </Link>
+              </div>
+
               <div className="total-container">
                 <div className="total">
                   <h4>Subtotal</h4>
@@ -87,20 +93,23 @@ class Cart extends Component {
                         })
                       : null}
                   </p>
-                  <h4>Frete</h4>
-                  <p>
-                    +
-                    {this.handleShipping().toLocaleString('pt-BR', {
-                      style: 'currency',
-                      currency: 'BRL',
-                    })}
-                  </p>
+                  <div className="shipping-price">
+                    <h4>Frete</h4>
+                    <p>
+                      +
+                      {this.handleShipping().toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                      })}
+                    </p>
+                  </div>
                   <h4>Total do pedido</h4>
                   {total}
                 </div>
               </div>
               <div className="proceed-checkout">
                 <Link
+                  className="btn-add-checkout"
                   to={{
                     pathname: '/checkout',
                     state: { cart, total },

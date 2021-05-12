@@ -7,6 +7,7 @@ import BtnsQuantity from '../components/BtnsQuantity';
 import StarRating from '../components/StarRatings';
 import FormRating from '../components/FormRating';
 import { isObject } from 'lodash';
+import { FaOpencart } from 'react-icons/fa';
 
 class Details extends Component {
   constructor(props) {
@@ -147,12 +148,12 @@ class Details extends Component {
                       </p>
                     </div>
                     <div className="details-price">
-                      <h4>
+                      <h3>
                         {item.price.toLocaleString('pt-BR', {
                           style: 'currency',
                           currency: 'BRL',
                         })}
-                      </h4>
+                      </h3>
                     </div>
                   </div>
                   <div className="available-quantity">
@@ -181,8 +182,11 @@ class Details extends Component {
                           />
                         </div>
                         <div className="see-cart">
-                          <Link className="see-cart-link" to="/cart">
-                            Ver carrinho
+                          <Link to="/cart">
+                            <FaOpencart
+                              className="cart-details-icon"
+                              to="/cart"
+                            />
                           </Link>
                         </div>
                       </div>

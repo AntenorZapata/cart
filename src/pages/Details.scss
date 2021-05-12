@@ -65,7 +65,7 @@
         margin-top: 1.5rem;
         text-align: left;
 
-        h4 {
+        h3 {
           color: $orangeColor;
           font-size: 40px;
           font-weight: 400;
@@ -227,11 +227,30 @@
 .see-cart {
   margin: 3rem 0 -2rem;
 
+  .cart-details-icon {
+    font-size: 3em;
+    color: $bordColor6;
+    margin: -2rem 0 0 1.2rem;
+
+    &:hover {
+      color: $orangeColor;
+      transition: 0.2s ease-in-out;
+      transform: translateX(4px);
+    }
+  }
+
   .see-cart-link {
     text-decoration: none;
     border: 1px solid $bordColor4;
-    padding: 0.7rem 2.2rem;
+    padding: 0.5rem 2rem;
     color: inherit;
+    font-family: 'Roboto Condensed';
+
+    &:hover {
+      background-color: rgba(141, 138, 138, 0.589);
+      color: white;
+      transition: 0.4s;
+    }
   }
 }
 

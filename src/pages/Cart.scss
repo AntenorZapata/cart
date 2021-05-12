@@ -19,6 +19,13 @@
     }
   }
 
+  .line-bottom {
+    width: 100%;
+    height: 2px;
+    background-color: $bordColor5;
+    margin-bottom: 2rem;
+  }
+
   .cart-products-container {
     // background-color: blue;
     width: 100%;
@@ -32,20 +39,48 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    margin-top: 2rem;
-    height: 20%;
+    margin: 5rem 0 0 0rem;
+    height: 30%;
 
     .total {
-      border: 1px solid black;
+      border: 2px solid $bordColor5;
       // background-color: palegreen;
       display: flex;
       flex-direction: column;
-      width: 50%;
+      width: 30%;
       justify-content: center;
       height: 100%;
+      padding: 1rem;
 
-      p {
-        margin-top: 2rem;
+      h4 {
+        font-size: 17px;
+        font-family: 'Roboto Condensed';
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .shipping-price {
+        // background-color: red;
+        display: flex;
+        justify-content: flex-start;
+        text-align: center;
+        flex-direction: column;
+        height: 100%;
+        margin: 1rem 0;
+
+        h4 {
+          // background-color: rgb(187, 150, 150);
+          width: 100%;
+          height: 50%;
+        }
+
+        p {
+          display: block;
+          width: 100%;
+          height: 50%;
+
+          // background-color: rgb(187, 150, 150);
+        }
       }
     }
   }
@@ -57,6 +92,7 @@
   height: 100%;
   align-items: center;
   justify-content: space-around;
+  margin-bottom: 1rem;
 
   .img-name {
     width: 20%;
@@ -132,5 +168,24 @@
 
   .back-link-cart {
     margin-left: 64rem;
+  }
+}
+
+.proceed-checkout {
+  margin: 3rem 0 0 62rem;
+  .btn-add-checkout {
+    border: none;
+    font-family: 'Roboto Condensed';
+    color: white;
+    background-color: $orangeColor;
+    padding: 0.5rem 2rem;
+    text-align: center;
+    font-size: 1rem;
+    text-decoration: none;
+
+    &:hover {
+      background-color: $orangeColorHover;
+      transition: 0.5s;
+    }
   }
 }
