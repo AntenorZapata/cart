@@ -1,2 +1,1 @@
-# Getting Started with Shopping Cart project
-React, redux and sass
+### Online Store with React, Redux and Sass
