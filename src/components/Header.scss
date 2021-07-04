@@ -57,23 +57,21 @@
 }
 .link-icon {
   color: black;
+}
+
+.cart {
+  display: flex;
+  width: 4rem;
 
   .cart-icon {
     font-size: 3rem;
-    position: relative;
-    margin: -1rem 2rem 0 0;
   }
-}
 
-.cart-login-container {
   .length {
     border: 1px solid $bordColor4;
     width: 17px;
     height: 18px;
     border-radius: 100%;
-    position: absolute;
-    top: 1.7rem;
-    right: 22.7rem;
     background-color: $orangeColor;
     color: white;
     font-size: 13px;

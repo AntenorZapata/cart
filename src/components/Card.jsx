@@ -32,7 +32,7 @@ class Card extends Component {
         <div className="title-card-container">
           <p>
             {product.title.length > 70
-              ? product.title.split(0, 1)
+              ? product.title.slice(0, 41)
               : product.title}
           </p>
         </div>

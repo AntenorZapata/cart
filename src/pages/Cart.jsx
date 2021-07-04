@@ -27,9 +27,7 @@ class Cart extends Component {
 
   handleShipping() {
     const { cart } = this.props;
-
     const shippingCart = cart.filter((i) => i.shipping.free_shipping === false);
-
     const shipping = shippingCart.reduce((total, item) => {
       total += item.qty * 9.9;
       return total;

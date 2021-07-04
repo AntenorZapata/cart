@@ -22,13 +22,9 @@ class Header extends Component {
     };
   }
 
-  // handleFetchClick() {
-  //   const product = localStorage.setItem('product', 'produtos da loja');
-  // }
-
   handleChange(e) {
-    const { redirect } = this.state;
-    const { handleFetchItems } = this.props;
+    // const { redirect } = this.state;
+    // const { handleFetchItems } = this.props;
 
     if (e.keyCode === 13) {
       this.props.fetchProducts(e.target.value);
@@ -97,8 +93,8 @@ class Header extends Component {
             <Link to="/cart" className="link-icon">
               <FaOpencart className="cart-icon" />
             </Link>
+            <div className="length">{cart.length}</div>
           </div>
-          <div className="length">{cart.length}</div>
         </div>
       </section>
     );
