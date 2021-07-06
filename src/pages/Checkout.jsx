@@ -68,10 +68,11 @@ export default class Checkout extends Component {
               <ShoppingCart product={prod} bool={true} />
             </div>
           ))}
-          <form action={link} id="submit">
+          <form action={link} id="submit" className='form'>
             <FormBillings state={this.state} />
             <FormOrder state={this.state} cart={cart} />
           </form>
+          <p className='total-checkout'>{total}</p>
           <div className="fill-order">
             <button onClick={this.handleFillForm} type="button">
               Preenchimento automatico
@@ -82,7 +83,7 @@ export default class Checkout extends Component {
               Fazer Pedido
             </button>
           </div>
-          <p>{total}</p>
+
         </div>
       </div>
     );

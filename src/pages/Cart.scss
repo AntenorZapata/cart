@@ -39,7 +39,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    margin: 5rem 0 0 0rem;
+    // margin: -2rem 0 0 0rem;
     height: 30%;
 
     .total {
@@ -167,7 +167,8 @@
   }
 
   .back-link-cart {
-    margin-left: 64rem;
+    margin: -10rem 0 0 64rem;
+    background-color: red;
   }
 }
 

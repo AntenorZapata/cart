@@ -28,59 +28,67 @@ export default class FormOrder extends Component {
               Cartão de Crédito
             </button>
           </div>
-          <div className="paypal-option">
+          {/* <div className="paypal-option">
             <a href="https://www.paypal.com/br/home">Paypal</a>
-          </div>
+          </div> */}
         </div>
         <div className="payment-content">
           {show ? (
             <div>
               <div className="credit-cart">
-                <label htmlFor="card">Cartão de crédito</label>
+                {/* <label htmlFor="card">Cartão de crédito</label> */}
                 <input
                   required
                   type="text"
                   id="card"
                   defaultValue={state.credCard}
+                  placeholder='Número do cartão'
                 />
               </div>
               <div className="first-last-order">
                 <div className="first-name">
-                  <label htmlFor="first-name">Nome</label>
+                  {/* <label htmlFor="first-name">Nome</label> */}
                   <input
                     required
                     type="text"
                     id="first-name"
                     defaultValue={state.name}
+                    placeholder='Nome'
+
                   />
                 </div>
                 <div className="last-name">
-                  <label htmlFor="last-name">Sobrenome</label>
+                  {/* <label htmlFor="last-name">Sobrenome</label> */}
                   <input
                     required
                     type="text"
                     id="last-name"
                     defaultValue={state.lastName}
+                    placeholder='Sobrenome'
+
                   />
                 </div>
               </div>
               <div className="first-last-order">
                 <div className="date">
-                  <label htmlFor="date">Vencimento</label>
+                  {/* <label htmlFor="date">Vencimento</label> */}
                   <input
                     required
                     type="date"
                     id="date"
                     defaultValue={state.date}
+                    placeholder='Validade'
+
                   />
                 </div>
                 <div className="security">
-                  <label htmlFor="security">Cc</label>
+                  {/* <label htmlFor="security">Cc</label> */}
                   <input
                     required
                     type="text"
                     id="security"
                     defaultValue={state.cc}
+                    placeholder='Cc'
                   />
                 </div>
               </div>

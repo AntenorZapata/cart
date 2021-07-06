@@ -6,8 +6,6 @@ class StarRatings extends Component {
     const { bool, starValue, handleRating } = this.props;
     const num = 5;
 
-    console.log(starValue);
-
     return (
       <div className="star-rating">
         {[...Array(num)].map((star, index) => {
