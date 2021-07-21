@@ -8,13 +8,8 @@ class Home extends Component {
       <div>
         <div className="border-bottom"></div>
         <Header />
-
         <section className="section-container">
           <div className="home">
-            {/* <img src={homeImg} alt="home-img" /> */}
-            {/* <div className="home-img">
-              <div className="image-gradient"></div>
-            </div> */}
           </div>
         </section>
       </div>

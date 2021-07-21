@@ -6,6 +6,27 @@
   justify-content: space-around;
 }
 
+@media screen and (min-width: 1024px) {
+  .player {
+    min-height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (min-width: 1370px) {
+  .player {
+    min-height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
 .time-control {
   width: 50%;
   display: flex;
@@ -19,6 +40,22 @@
   }
   p {
     padding: 1rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .time-control {
+    width: 70%;
+    display: flex;
+    margin-top: -18rem;
+  }
+}
+
+@media screen and (min-width: 1370px) {
+  .time-control {
+    width: 50%;
+    display: flex;
+    margin-top: -18rem;
   }
 }
 

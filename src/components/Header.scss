@@ -1,5 +1,5 @@
 .navbar {
-  width: 65%;
+  width: 70%;
   margin: 1rem auto 0rem auto;
   display: flex;
   justify-content: space-between;
@@ -55,6 +55,7 @@
     }
   }
 }
+
 .link-icon {
   color: black;
 }
@@ -85,7 +86,7 @@
 
 .input-home {
   input {
-    border: none;
+    border: 1px solid #71767c5d;
     border-radius: 10px;
     padding: 0.2rem 0.8rem;
     font-size: 15px;
@@ -95,6 +96,18 @@
     top: 2.2rem;
     right: 30rem;
     outline: none;
+  }
+
+  @media screen and (min-width: 1024px) {
+    input {
+      margin-right: -10rem;
+    }
+  }
+
+  @media screen and (min-width: 1370px) {
+    input {
+      margin-right: 0;
+    }
   }
 
   input:focus {

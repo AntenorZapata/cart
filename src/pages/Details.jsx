@@ -6,7 +6,7 @@ import { Link, Redirect } from 'react-router-dom';
 import BtnsQuantity from '../components/BtnsQuantity';
 import StarRating from '../components/StarRatings';
 import FormRating from '../components/FormRating';
-import { isObject } from 'lodash';
+// import { isObject } from 'lodash';
 import { FaOpencart } from 'react-icons/fa';
 
 class Details extends Component {
@@ -122,7 +122,7 @@ class Details extends Component {
                       <li>
                         <div className="content-popup">
                           <p>
-                            Aglumas imagens estão com baixa resolução por conta
+                            Aglumas imagens estão em baixa resolução por conta
                             do tamanho dos arquivos fornecidos pela API.
                           </p>
                         </div>

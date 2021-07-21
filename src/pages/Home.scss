@@ -5,6 +5,7 @@
   background: url('./imgs/home.jpg');
   background-size: cover;
   margin-top: 2rem;
+  position: relative;
 
   &::before {
     content: '';
@@ -18,35 +19,16 @@
     background-position: center;
     mix-blend-mode: screen;
   }
+}
 
-  // img {
-  //   width: 100%;
-  //   opacity: 0.6;
-  // }
-
-  .home {
-    // width: 65%;
-    // margin: 0rem auto;
-    // height: 100vh;
-    // img {
-    //   width: 100%;
-    //   opacity: 0.6;
-    // }
-
-    // .image-gradient {
-    //   background-color: rgba(228, 228, 228, 0.281);
-    //   width: 65.1%;
-    //   height: 85%;
-    //   position: absolute;
-    //   left: 19.5rem;
-    //   top: 6.6rem;
-    // }
+@media screen and (min-width: 1024px) {
+  .section-container {
+    margin-top: 0;
   }
 }
 
-// .border-bottom {
-//   border-bottom: 1px solid $bordColor4;
-//   width: 66%;
-//   margin: auto;
-//   margin-top: 2rem;
-// }
+@media screen and (min-width: 1370px) {
+  .section-container {
+    margin-top: 2rem;
+  }
+}

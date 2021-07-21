@@ -1,10 +1,8 @@
 .product-container {
-  // background-color: rgb(216, 168, 168);
   min-height: 100%;
   display: flex;
   width: 65%;
   margin: -2rem auto;
-  // border: 1px solid black;
 
   .section-products {
     width: 80%;
@@ -12,6 +10,24 @@
     .pagination {
       margin-top: 5rem;
     }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .product-container {
+    min-height: 100%;
+    display: flex;
+    width: 80%;
+    margin: -2rem auto;
+  }
+}
+
+@media screen and (min-width: 1370px) {
+  .product-container {
+    min-height: 100%;
+    display: flex;
+    width: 65%;
+    margin: -2rem auto;
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
-import { adjustQty, removeFromCart } from '../actions/postActions';
+// import { adjustQty, removeFromCart } from '../actions/postActions';
 import ShoppingCart from '../components/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { MdRemoveShoppingCart } from 'react-icons/md';
@@ -128,10 +128,4 @@ const mapStateToProps = (state) => ({
   cart: state.shop.cart,
 });
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     adjustQty: (id, value) => dispatch(adjustQty(id, value)),
-//     removeFromCart: (id) => dispatch(removeFromCart(id)),
-//   };
-// };
 export default connect(mapStateToProps, null)(Cart);
