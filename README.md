@@ -1,6 +1,6 @@
 # Boas vindas ao repositório do projeto de Front-End Online Store!
 ## Meus comentários
-Este foi o meu primeiro projeto em React: uma loja online, utilizando a API do Mercado Livre. Nele pude exercitar conceitos importantes, como componentes, props, ciclo de vida, JS assíncrono etc. Utilizei, também, Redux para o gerenciamento de estado e Sass para o estilo. Embora 100% funcional, o projeto dá espaço para futuras melhorias, como uma reorganização dos componentes (mais enxutos e reutilizáveis), realização de testes e media queries.
+Este foi o meu primeiro projeto em React: uma loja online utilizando a API do Mercado Livre. Nele pude exercitar conceitos importantes, como componentes, props, ciclo de vida, JS assíncrono etc. Utilizei, também, Redux para o gerenciamento de estado e Sass para o estilo. Embora 100% funcional, o projeto dá espaço para futuras melhorias, como uma reorganização dos componentes (mais enxutos e reutilizáveis), realização de testes e media queries.
 
 ## Instalação do projeto localmente
 npm i + npm start
