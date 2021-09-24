@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 class FormRating extends Component {
   render() {
-    const { handleSubmit, handleValue, email, avaliation } = this.props;
+    const {
+      handleSubmit, handleValue, email, avaliation,
+    } = this.props;
     return (
       <div>
         <form className="form">

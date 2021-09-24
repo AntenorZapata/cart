@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import imgZatara from '../pages/imgs/zatarabg.png';
 import { FaOpencart } from 'react-icons/fa';
+import imgZatara from '../pages/imgs/zatarabg.png';
 import { fetchProducts } from '../actions/postActions';
-import { times } from 'lodash';
-import { useLocation } from 'react-router-dom';
 
 class Header extends Component {
   constructor(props) {
@@ -16,8 +14,7 @@ class Header extends Component {
     // this.handleFetchClick = this.handleFetchClick.bind(this);
 
     this.state = {
-      fetchProducts: '',
-      makeFetch: false,
+      fetchedProducts: '',
       redirect: false,
     };
   }
@@ -27,15 +24,15 @@ class Header extends Component {
     // const { handleFetchItems } = this.props;
 
     if (e.keyCode === 13) {
-      this.props.fetchProducts(e.target.value);
-      this.setState({ redirect: true, fetchProducts: '' });
-      const product = localStorage.setItem('product', 'produtos da loja');
+      const { fetchsProducts } = this.props;
+      fetchsProducts(e.target.value);
+      this.setState({ redirect: true, fetchedProducts: '' });
     }
   }
 
   handleChangeInput({ target }) {
     const { value } = target;
-    this.setState({ fetchProducts: value });
+    this.setState({ fetchedProducts: value });
   }
 
   render() {
@@ -52,6 +49,8 @@ class Header extends Component {
         />
       );
     }
+
+    const { fetchedProducts } = this.state;
 
     return (
       <section className="navbar">
@@ -79,13 +78,13 @@ class Header extends Component {
         </div>
         <div className="input-home">
           <input
-            tabIndex="1"
+            // tabIndex="1"
             onKeyDown={this.handleChange}
             type="text"
             id="product"
             placeholder="Buscar Produtos"
             onChange={this.handleChangeInput}
-            value={this.state.fetchProducts}
+            value={fetchedProducts}
           />
         </div>
         <div className="cart-login-container">
@@ -106,10 +105,8 @@ const mapStateToProps = (state) => ({
   products: state.shop.products,
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchProducts: (id, query) => dispatch(fetchProducts(id, query)),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  fetchsProducts: (id, query) => dispatch(fetchProducts(id, query)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

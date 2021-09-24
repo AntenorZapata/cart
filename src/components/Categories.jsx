@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { fetchProducts } from '../actions/postActions';
 import { connect } from 'react-redux';
+import { fetchProducts } from '../actions/postActions';
 
 class Categories extends Component {
   constructor(props) {
@@ -9,8 +9,8 @@ class Categories extends Component {
   }
 
   handleFetch(query) {
-    const { handleCurrPage } = this.props;
-    this.props.fetchProducts(query);
+    const { handleCurrPage, fetchsProducts } = this.props;
+    fetchsProducts(query);
     handleCurrPage();
   }
 
@@ -52,9 +52,7 @@ const mapStateToProps = (state) => ({
   products: state.shop.products,
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchProducts: (query) => dispatch(fetchProducts(query)),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  fetchsProducts: (query) => dispatch(fetchProducts(query)),
+});
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);

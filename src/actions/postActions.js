@@ -15,12 +15,10 @@ export function fetchCategories() {
   return function (dispatch) {
     fetch('https://api.mercadolibre.com/sites/MLB/categories')
       .then((response) => response.json())
-      .then((data) =>
-        dispatch({
-          type: FETCH_CATEGORIES,
-          payload: data,
-        })
-      );
+      .then((data) => dispatch({
+        type: FETCH_CATEGORIES,
+        payload: data,
+      }));
   };
 }
 
@@ -32,12 +30,10 @@ export function fetchProducts(query) {
     });
     fetch(`https://api.mercadolibre.com/sites/MLB/search?q=$${query}`)
       .then((response) => response.json())
-      .then((data) =>
-        dispatch({
-          type: FETCH_PRODUCTS,
-          payload: data.results,
-        })
-      );
+      .then((data) => dispatch({
+        type: FETCH_PRODUCTS,
+        payload: data.results,
+      }));
   };
 }
 

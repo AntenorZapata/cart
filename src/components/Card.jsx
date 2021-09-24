@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { addToCart, loadCurrItem } from '../actions/postActions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AiFillPlusCircle } from 'react-icons/ai';
+import { addToCart, loadCurrItem } from '../actions/postActions';
 
 class Card extends Component {
   constructor(props) {
@@ -12,18 +12,18 @@ class Card extends Component {
   }
 
   handleAddProduct(id) {
-    this.props.addToCart(id);
+    const { addsToCart } = this.props;
+    addsToCart(id);
   }
 
   render() {
-    const { product } = this.props;
+    const { product, loadsCurrItem } = this.props;
 
     return (
       <div className="card">
         <div className="img-card">
-          <Link to="/details">
+          <Link to="/details" onClick={() => loadsCurrItem(product)}>
             <img
-              onClick={() => this.props.loadCurrItem(product)}
               src={product.thumbnail}
               alt="img-card"
             />
@@ -48,7 +48,7 @@ class Card extends Component {
               className="max-btn-card"
               onClick={() => this.handleAddProduct(product.id)}
               type="button"
-            ></AiFillPlusCircle>
+            />
           </div>
           {/* <div className="btn-details">
               <button
@@ -68,10 +68,8 @@ const mapStateToProps = (state) => ({
   cart: state.shop.cart,
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addToCart: (id) => dispatch(addToCart(id)),
-    loadCurrItem: (item) => dispatch(loadCurrItem(item)),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  addsToCart: (id) => dispatch(addToCart(id)),
+  loadsCurrItem: (item) => dispatch(loadCurrItem(item)),
+});
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

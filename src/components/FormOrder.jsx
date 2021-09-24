@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 export default class FormOrder extends Component {
   constructor(props) {
@@ -17,8 +16,7 @@ export default class FormOrder extends Component {
 
   render() {
     const { show } = this.state;
-    const { cart, state } = this.props;
-    const link = cart[0].permalink;
+    const { state } = this.props;
 
     return (
       <div className="checkout-right-content">
@@ -42,7 +40,7 @@ export default class FormOrder extends Component {
                   type="text"
                   id="card"
                   defaultValue={state.credCard}
-                  placeholder='Número do cartão'
+                  placeholder="Número do cartão"
                 />
               </div>
               <div className="first-last-order">
@@ -53,7 +51,7 @@ export default class FormOrder extends Component {
                     type="text"
                     id="first-name"
                     defaultValue={state.name}
-                    placeholder='Nome'
+                    placeholder="Nome"
 
                   />
                 </div>
@@ -64,7 +62,7 @@ export default class FormOrder extends Component {
                     type="text"
                     id="last-name"
                     defaultValue={state.lastName}
-                    placeholder='Sobrenome'
+                    placeholder="Sobrenome"
 
                   />
                 </div>
@@ -77,7 +75,7 @@ export default class FormOrder extends Component {
                     type="date"
                     id="date"
                     defaultValue={state.date}
-                    placeholder='Validade'
+                    placeholder="Validade"
 
                   />
                 </div>
@@ -88,7 +86,7 @@ export default class FormOrder extends Component {
                     type="text"
                     id="security"
                     defaultValue={state.cc}
-                    placeholder='Cc'
+                    placeholder="Cc"
                   />
                 </div>
               </div>
@@ -98,11 +96,4 @@ export default class FormOrder extends Component {
       </div>
     );
   }
-}
-
-{
-  /* <form action="">
-<label htmlFor="card">Salvar os dados do cartão</label>
-<input type="checkbox" id="card" />
-</form> */
 }

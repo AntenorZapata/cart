@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { RiDeleteBack2Fill } from 'react-icons/ri';
 import {
   adjustQtySum,
   removeFromCart,
   adjustQtySubtract,
 } from '../actions/postActions';
-import { connect } from 'react-redux';
 import BtnsQuantity from './BtnsQuantity';
-import { RiDeleteBack2Fill } from 'react-icons/ri';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -76,7 +76,7 @@ class ShoppingCart extends Component {
             </div>
           )}
         </div>
-        <div className="line-bottom"></div>
+        <div className="line-bottom" />
       </div>
     );
   }
@@ -86,13 +86,11 @@ const mapStateToProps = (state) => ({
   cart: state.shop.cart,
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    adjustQtySum: (id, value) => dispatch(adjustQtySum(id, value)),
-    adjustQtySubtract: (id, value) => dispatch(adjustQtySubtract(id, value)),
-    removeFromCart: (id) => dispatch(removeFromCart(id)),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  adjustQtySum: (id, value) => dispatch(adjustQtySum(id, value)),
+  adjustQtySubtract: (id, value) => dispatch(adjustQtySubtract(id, value)),
+  removeFromCart: (id) => dispatch(removeFromCart(id)),
+});
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);
 
 // shipping:
